@@ -38,11 +38,11 @@ const NavBar = () => {
           scroll
             ? "bg-slate-50/20 dark:bg-transparent"
             : "bg-white dark:bg-[#111111]"
-        }  md:w-full w-screen py-[15px] flex flex-row items-center fixed z-50 transition-all duration-300`}
+        }  w-full py-[15px] flex flex-row items-center fixed z-50 transition-all duration-300`}
       >
         <img
           src="/assets/Logo.svg"
-          className="h-[40px] md:w-full w-screen grid place-content-center"
+          className="h-[40px] w-full grid place-content-center"
         />
         <div className="flex-row items-center relative w-full hidden md:inline-flex">
           <input

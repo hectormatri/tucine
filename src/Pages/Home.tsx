@@ -16,10 +16,10 @@ function Home() {
   }
 
   return (
-    <div id="overflowHidden" className="flex flex-col items-center w-full">
+    <div  className="flex flex-col items-center">
       <div className="w-screen h-screen z-0">
         <img src={`https://image.tmdb.org/t/p/original${imageHome[numberRandom(0, imageHome.length)]?.backdrop_path}`}
-          className="md:w-full w-screen h-screen object-cover object-top fixed z-0 dark:brightness-[0.5] brightness-[1.1] left-0"
+          className="w-full h-screen object-cover object-top fixed z-0 dark:brightness-[0.5] brightness-[1.1] left-0"
         />
       </div>
       <ListFilms/>
