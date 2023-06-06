@@ -44,6 +44,12 @@
   border-radius: 12px;
 }
 
+@media only screen and (max-width: 640px) {
+  #overflowVisible::-webkit-scrollbar {
+    height: 2px;
+  }
+}
+
 :root,
 #overflowVisible::-webkit-scrollbar-track:root.dark {
   background-color: #121212;

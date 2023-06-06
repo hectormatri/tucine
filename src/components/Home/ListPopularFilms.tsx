@@ -22,7 +22,7 @@ function ListFilms() {
       <p className="text-3xl text-start lg:w-[1500px] w-screen px-6 md:px-0 dark:text-white">Los más popular</p>
       <div
         id="overflowVisible"
-        className="flex flex-row gap-4 w-[calc(100vw-20px)] px-5 lg:w-[1500px] overflow-hidden py-6"
+        className="flex flex-row gap-4 w-[calc(100vw-40px)] px-1 lg:w-[1500px] overflow-hidden py-6"
       >
         {filmsDiscover.map((f, index: number) => {
           return (
