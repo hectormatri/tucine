@@ -15,15 +15,15 @@ function SideBar({
 }: Props) {
   return (
     <div
-      className={`flex fixed flex-row h-full md:w-full w-screen top-0 transition-all duration-300 z-50  ${
+      className={`flex fixed flex-row h-full w-full justify-between top-0 transition-all duration-300 z-50  ${
         isVisible ? "-right-0" : "-right-full"
       }`}
     >
       <div
         onClick={() => handleVisible(!isVisible)}
-        className=" h-full md:w-full w-screen bg-slate-200/70 dark:brightness-0"
+        className="h-full md:w-full w-screen bg-slate-200/70 dark:brightness-0"
       />
-      <div className="bg-white absolute w-[300px] h-full justify-between right-0 flex flex-col p-8 dark:bg-[#111111]">
+      <div className="bg-white md:w-[300px] w-[800px] h-full justify-between right-0 flex flex-col p-8 dark:bg-[#111111]">
         <div className="gap-5 flex flex-col">
           <h1 className="font-bold text-center text-2xl dark:text-white">
             MENÚ

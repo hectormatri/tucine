@@ -18,7 +18,7 @@ function ListFilms() {
   }, []);
 
   return (
-    <div className="flex flex-col bg-white dark:bg-[#121212] lg:w-full items-center z-40 pt-[25px] transition-all duration-300">
+    <div className="flex flex-col bg-white dark:bg-[#121212] md:w-full items-center z-40 pt-[25px] transition-all duration-300">
       <p className="text-3xl text-start lg:w-[1500px] w-screen px-6 md:px-0 dark:text-white">Los más popular</p>
       <div
         id="overflowVisible"
