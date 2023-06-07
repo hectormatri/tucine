@@ -56,8 +56,7 @@ function Info() {
           <iframe
             id="popover-click"
             className="w-full h-[300px] px-5"
-            
-            src={`https://www.youtube.com/embed/L0anWmmd8TI?autoplay=1&showinfo=0&controls=0`}
+            src={`https://www.youtube.com/embed/L0anWmmd8TI?autoplay=1&showinfo=0&controls=1`}
           ></iframe>
         </div>
       </div>
