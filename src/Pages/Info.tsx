@@ -47,16 +47,17 @@ function Info() {
             <p className="text-white text-sm bg-slate-700/40 px-3 py-1 rounded-md w-fit">
               Valoracion {Math.round(movie.vote_average)}
             </p>
-            <p className="text-white text-sm bg-slate-700/40 px-3 py-1 rounded-md w-fit">
+            <button className="text-white text-sm bg-slate-700/40 px-3 py-1 rounded-md w-fit">
               Ver trailer
-            </p>
+            </button>
           </div>
           <p className="text-white px-5 my-4">Sinopsis</p>
           <p className="text-white px-5 text-sm">{movie.overview}</p>
           <iframe
-            width="420"
-            height="315"
-            src={`https://www.youtu.be/L0anWmmd8TI`}
+            id="popover-click"
+            className="w-full h-[300px] px-5"
+            
+            src={`https://www.youtube.com/embed/L0anWmmd8TI?autoplay=1&showinfo=0&controls=0`}
           ></iframe>
         </div>
       </div>
