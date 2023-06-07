@@ -55,6 +55,7 @@ function Info() {
           <p className="text-white px-5 text-sm">{movie.overview}</p>
           <iframe
             id="popover-click"
+            allowFullScreen
             className="w-full h-[300px] px-5"
             src={`https://www.youtube.com/embed/L0anWmmd8TI?autoplay=1&showinfo=0&controls=1`}
           ></iframe>
