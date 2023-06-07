@@ -1,21 +1,12 @@
-import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../utils/store";
-
-//Hooks
-import useFetch from "../../../hooks/useFetch";
 
 //Componentes
 import CardFilm from "../CardFilm";
 
 
 function ListFilms() {
-  const { fetchEndPoint } = useFetch();
   const filmsDiscover = useSelector((state: RootState) => state.filmsDiscover);
-
-  useEffect(() => {
-    fetchEndPoint('discover/movie?language=es');
-  }, []);
 
   return (
     <div className="flex flex-col bg-white dark:bg-[#121212] md:w-full items-center z-40 pt-[25px] transition-all duration-300">

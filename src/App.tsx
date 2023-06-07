@@ -1,6 +1,8 @@
 import { Outlet } from "react-router-dom";
 import NavBar from "./components/NavBar";
+import { useEffect } from "react"
 
+import useFetch from "../hooks/useFetch";
 
 interface options {
   method: string,
@@ -18,7 +20,11 @@ const options:options = {
 
 
 function App() {
-  
+  const { fetchEndPoint } = useFetch();
+
+  useEffect(() => {
+    setTimeout(() => fetchEndPoint('discover/movie?language=es'), 300);
+  }, []);
 
   return (
     <div  className="w-screen h-screen">
