@@ -14,7 +14,7 @@ function ListFilms() {
   const filmsDiscover = useSelector((state: RootState) => state.filmsDiscover);
 
   useEffect(() => {
-    fetchEndPoint('https://api.themoviedb.org/3/discover/movie?language=es');
+    fetchEndPoint('discover/movie?language=es');
   }, []);
 
   return (

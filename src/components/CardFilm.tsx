@@ -14,7 +14,7 @@ interface Film {
 function CardFilm({ title, path, date, valoration, id }: Film) {
   const { fetchEndPoint } = useFetch();
   return (
-    <Link onClick={() => fetchEndPoint(`https://api.themoviedb.org/3/movie/${id}?language=es`)} to={`/movieId/${id}`} className=" hover:bg-white/5 relative flex flex-col justify-between items-center h-[455px] w-[233.33px] rounded-xl hover:scale-105 transition-all duration-300 ">
+    <Link onClick={() => fetchEndPoint(`movie/${id}?language=es`)} to={`/movieId/${id}`} className=" hover:bg-white/5 relative flex flex-col justify-between items-center h-[455px] w-[233.33px] rounded-xl hover:scale-105 transition-all duration-300 ">
       <div className="absolute bg-white/60 w-7 h-7 p-1 rounded-full right-3 top-3">
         <p className="text-center font-bold text-sm ">{valoration}</p>
       </div>

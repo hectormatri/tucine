@@ -20,7 +20,16 @@ export const infoMovie = createSlice({
     initialState: {} as infoMovieInterface,
     reducers: {
         handleInitialStateInfoMovie(state, action) {
-            console.log(state)
+            return action.payload;
+        },
+    },
+});
+
+export const trailerMovie = createSlice({
+    name: "trailerMovie",
+    initialState: {} as infoMovieInterface,
+    reducers: {
+        handleInitialStateTrailerMovie(state, action) {
             return action.payload;
         },
     },
@@ -28,9 +37,11 @@ export const infoMovie = createSlice({
 
 export const { handleInitialStateFilms } = filmDiscoverSlice.actions;
 export const { handleInitialStateInfoMovie } = infoMovie.actions;
+export const { handleInitialStateTrailerMovie } = trailerMovie.actions;
 
 export default {
     filmDiscoverSlice: filmDiscoverSlice.reducer,
     infoMovie: infoMovie.reducer,
+    trailerMovie: trailerMovie.reducer,
 }
 

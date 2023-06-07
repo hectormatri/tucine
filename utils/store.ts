@@ -13,5 +13,6 @@ export const store = configureStore({
     reducer: {
         filmsDiscover: modelSlice.filmDiscoverSlice,
         infoMovie: modelSlice.infoMovie,
+        trailerMovie: modelSlice.trailerMovie,
     }
 })

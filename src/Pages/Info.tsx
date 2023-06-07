@@ -1,15 +1,21 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../utils/store";
 
+import useFetch from "../../hooks/useFetch";
+
 function Info() {
   const movie = useSelector((state: RootState) => state.infoMovie);
+  const [watchVideo, setWatchVideo] = useState<boolean>(false);
+  const { fetchEndPoint } = useFetch();
 
   useEffect(() => {
     window.scroll({
       top: 0,
     });
-    console.log(movie);
+    if (Object.keys(movie).length === 0) {
+        fetchEndPoint(`movie/${localStorage?.getItem("idFilm")}?language=es`)
+    }
   }, []);
 
   return (
@@ -22,7 +28,7 @@ function Info() {
           />
         </div>
         <div className="z-40 flex flex-col absolute w-screen top-24">
-          <div className="flex flex-row justify-between px-5">
+          <div className={`flex flex-row ${movie.genres?.length <= 2 ? "justify-start gap-4" : "justify-between"} px-5`}>
             {movie.genres?.map((g, index) => {
               return (
                 <p className="text-white text-sm" key={index}>
@@ -47,18 +53,22 @@ function Info() {
             <p className="text-white text-sm bg-slate-700/40 px-3 py-1 rounded-md w-fit">
               Valoracion {Math.round(movie.vote_average)}
             </p>
-            <button className="text-white text-sm bg-slate-700/40 px-3 py-1 rounded-md w-fit">
+            <button onClick={() => setWatchVideo(!watchVideo)} className="text-white text-sm bg-slate-700/40 px-3 py-1 rounded-md w-fit">
               Ver trailer
             </button>
           </div>
           <p className="text-white px-5 my-4">Sinopsis</p>
           <p className="text-white px-5 text-sm">{movie.overview}</p>
-          <iframe
-            id="popover-click"
-            allowFullScreen
-            className="w-full h-[300px] px-5"
-            src={`https://www.youtube.com/embed/L0anWmmd8TI?autoplay=1&showinfo=0&controls=1`}
-          ></iframe>
+          <div className="relative w-full h-[350px]">
+            <div className={`fixed w-full top-[220px] ${watchVideo ? "-right-0" : "-right-full"} transition-all duration-300`}>
+                <iframe
+                    id="popover-click"
+                    allowFullScreen
+                    className="w-full h-[300px]"
+                    src={`https://www.youtube.com/embed/L0anWmmd8TI?autoplay=1&showinfo=0&controls=1`}
+                />
+            </div>
+          </div>
         </div>
       </div>
       <div className="flex flex-col bg-white dark:bg-[#121212] z-40 w-full md:items-center items-start">

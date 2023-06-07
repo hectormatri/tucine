@@ -24,13 +24,20 @@ function useFetch() {
   };
 
   const fetchEndPoint = async (url: string) => {
-    const { data } = await axios.get(url, options);
-
-    if (movies[0] === undefined && url === "https://api.themoviedb.org/3/discover/movie?language=es") {
+    const { data } = await axios.get(`https://api.themoviedb.org/3/${url}`, options);
+    console.log(url)
+    
+    if (movies[0] === undefined && url === "discover/movie?language=es") {
         dispatch(handleInitialStateFilms(data.results));
-    } else if ((movies[0] !== undefined && url !== "https://api.themoviedb.org/3/discover/movie?language=es")) {
+
+    } else if ((movies[0] !== undefined && url !== "discover/movie?language=es")) {
       dispatch(handleInitialStateInfoMovie(data));
-    } else return
+      localStorage.setItem("idFilm", `${data.id}`)
+      
+    } else {
+      dispatch(handleInitialStateInfoMovie(data))
+     
+    }
   };
 
   return { fetchEndPoint };
