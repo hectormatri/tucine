@@ -3,21 +3,20 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../utils/store";
 
+
 //Reducers
 import { handleInitialStateFilms } from "../utils/modelSlice";
 import { handleInitialStateInfoMovie } from "../utils/modelSlice";
 
-import { filmsDiscoverInterface } from "../interfaceFilms"
+import { infoMovieInterface } from "../interfaceFilms"
 
-interface Props {
-  Films: filmsDiscoverInterface[]
-}
 
 function useFetch() {
   const dispatch = useDispatch();
   const movies = useSelector((state: RootState) => state.filmsDiscover);
+ 
 
-  const [films, setFilms] = useState<{Films: Props}>();
+  const [films, setFilms] = useState<infoMovieInterface>();
  
 
   interface options {
@@ -33,19 +32,21 @@ function useFetch() {
     },
   };
 
+ 
+
   const fetchEndPoint = async (url: string) => {
     const { data } = await axios.get(`https://api.themoviedb.org/3/${url}`, options);
     
     if (movies[0] === undefined && url === "discover/movie?language=es") {
-        setFilms(data)
         dispatch(handleInitialStateFilms(data.results));
 
     } else if ((movies[0] !== undefined && url !== "discover/movie?language=es")) {
-      dispatch(handleInitialStateInfoMovie(data));
-      localStorage.setItem("idFilm", `${data.id}`)
+      setFilms(data);
+      console.log("hola")
       
     } else {
       dispatch(handleInitialStateInfoMovie(data))
+      console.log("adios")
      
     }
   };

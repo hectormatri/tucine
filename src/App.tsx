@@ -23,7 +23,7 @@ function App() {
   const { fetchEndPoint } = useFetch();
 
   useEffect(() => {
-    setTimeout(() => fetchEndPoint('discover/movie?language=es'), 300);
+   fetchEndPoint('discover/movie?language=es')
   }, []);
 
   return (
