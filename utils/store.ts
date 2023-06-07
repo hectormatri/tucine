@@ -12,5 +12,6 @@ export type AppDispatch = typeof store.dispatch
 export const store = configureStore({
     reducer: {
         filmsDiscover: modelSlice.filmDiscoverSlice,
+        infoMovie: modelSlice.infoMovie,
     }
 })

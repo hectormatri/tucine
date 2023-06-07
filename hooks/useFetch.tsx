@@ -1,33 +1,36 @@
 import axios from "axios";
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../utils/store";
 
 //Reducers
-import { handleInitialState } from "../utils/modelSlice"
+import { handleInitialStateFilms } from "../utils/modelSlice";
+import { handleInitialStateInfoMovie } from "../utils/modelSlice";
 
 function useFetch() {
   const dispatch = useDispatch();
+  const movies = useSelector((state: RootState) => state.filmsDiscover);
 
   interface options {
-    method: string,
-    headers: object,
+    method: string;
+    headers: object;
   }
 
-  const options:options = {
+  const options: options = {
     method: "GET",
     headers: {
       accept: "application/json",
-      Authorization:
-        `Bearer ` + import.meta.env.VITE_APP_API_KEY,
+      Authorization: `Bearer ` + import.meta.env.VITE_APP_API_KEY,
     },
   };
 
-  const fetchEndPoint = async () => {
-    const {data} = await axios.get(
-      "https://api.themoviedb.org/3/discover/movie?language=es",
-      options
-    );
-    
-    dispatch(handleInitialState(data.results))
+  const fetchEndPoint = async (url: string) => {
+    const { data } = await axios.get(url, options);
+
+    if (movies[0] === undefined && url === "https://api.themoviedb.org/3/discover/movie?language=es") {
+        dispatch(handleInitialStateFilms(data.results));
+    } else if ((movies[0] !== undefined && url !== "https://api.themoviedb.org/3/discover/movie?language=es")) {
+      dispatch(handleInitialStateInfoMovie(data));
+    } else return
   };
 
   return { fetchEndPoint };

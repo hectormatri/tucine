@@ -8,6 +8,7 @@ import {store} from "../utils/store"
 import App from "./App.tsx";
 import Explore from "./Pages/Explore.tsx";
 import Home from "./Pages/Home.tsx";
+import Info from "./Pages/Info.tsx";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <Provider store={store}>
@@ -16,6 +17,7 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
         <Route path="/" element={<App />}>
           <Route path="/" element={<Home />}/>
           <Route path="/explore-films" element={<Explore />} />
+          <Route path="/movieId/:movieId" element={<Info/>}/>
         </Route>
       </Routes>
     </BrowserRouter>

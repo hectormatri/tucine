@@ -14,11 +14,11 @@ function ListFilms() {
   const filmsDiscover = useSelector((state: RootState) => state.filmsDiscover);
 
   useEffect(() => {
-    fetchEndPoint();
+    fetchEndPoint('https://api.themoviedb.org/3/discover/movie?language=es');
   }, []);
 
   return (
-    <div id="overflowHidden" className="flex flex-col bg-white dark:bg-[#121212] md:w-full items-center z-40 pt-[25px] transition-all duration-300">
+    <div className="flex flex-col bg-white dark:bg-[#121212] md:w-full items-center z-40 pt-[25px] transition-all duration-300">
       <p className="text-3xl text-start lg:w-[1500px] w-screen px-6 md:px-0 dark:text-white">Los más popular</p>
       <div
         id="overflowVisible"
@@ -32,6 +32,7 @@ function ListFilms() {
               path={`https://image.tmdb.org/t/p/w780${f.poster_path}`}
               date={f.release_date}
               valoration={f.vote_average}
+              id={f.id}
             />
           );
         })}

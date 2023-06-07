@@ -2,22 +2,35 @@ import { createSlice } from "@reduxjs/toolkit";
 
 //Interfaces
 import { filmsDiscoverInterface } from "../interfaceFilms";
-
+import { infoMovieInterface } from "../interfaceFilms";
 
 export const filmDiscoverSlice = createSlice({
     name: "filmDiscoverSlice",
     initialState: [] as filmsDiscoverInterface[],
     reducers: {
-        handleInitialState(state, action) {
+        handleInitialStateFilms(state, action) {
             console.log(state)
             return action.payload;
         },
     },
 });
 
-export const { handleInitialState } = filmDiscoverSlice.actions;
+export const infoMovie = createSlice({
+    name: "infoMovie",
+    initialState: {} as infoMovieInterface,
+    reducers: {
+        handleInitialStateInfoMovie(state, action) {
+            console.log(state)
+            return action.payload;
+        },
+    },
+});
+
+export const { handleInitialStateFilms } = filmDiscoverSlice.actions;
+export const { handleInitialStateInfoMovie } = infoMovie.actions;
 
 export default {
-    filmDiscoverSlice: filmDiscoverSlice.reducer
+    filmDiscoverSlice: filmDiscoverSlice.reducer,
+    infoMovie: infoMovie.reducer,
 }
 
