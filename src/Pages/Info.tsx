@@ -113,7 +113,7 @@ function Info() {
               );
             })}
           </div>
-          <div className={`fixed w-full h-[350px] flex flex-row  transition-all duration-300 ${watchVideo ? "right-0" : "-right-full"}`}>
+          <div className={`fixed w-full h-[350px] flex flex-row z-40 top-[55%] transition-all duration-300 ${watchVideo ? "right-0" : "-right-full"}`}>
             <div onClick={() => {setWatchVideo(!watchVideo), videoStopper("stopvideo")}} className="bg-slate-900/60 fixed w-screen top-0 h-screen z-40"/>
             <div id="stopvideo" className={`absolute w-[calc(100vw-40px)] right-5 -top-[200px] overflow-hidden rounded-3xl z-40`}>
                 
