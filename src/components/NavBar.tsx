@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom"
 
 //Hooks
 import useVisible from "../../hooks/useVisible";
@@ -7,7 +8,12 @@ import useTheme from "../../hooks/useTheme";
 //Componentes
 import SideBar from "./SideBar";
 
-const NavBar = () => {
+interface Props {
+  getFixed: (state: boolean) => void
+}
+
+const NavBar = ({getFixed} : Props) => {
+
   const [scroll, setScroll] = useState<boolean>(true);
   const { visible, toogleVisible } = useVisible();
   const { theme, handleToogleTheme } = useTheme();
@@ -19,6 +25,10 @@ const NavBar = () => {
   const handleChangeTheme = () => {
     handleToogleTheme();
   };
+
+  useEffect(() => {
+    getFixed(visible)
+  },[visible])
 
   useEffect(() => {
     addEventListener("scroll", () => {
@@ -40,10 +50,12 @@ const NavBar = () => {
             : "bg-white dark:bg-[#111111]"
         }  w-full py-[15px] flex flex-row items-center fixed z-50 transition-all duration-300`}
       >
-        <img
-          src="/assets/Logo.svg"
-          className="h-[40px] w-full grid place-content-center"
-        />
+        <Link to="/" className="h-[35px] w-full">
+          <img
+            src="/assets/Logo.svg"
+            className="h-[35px] w-full grid place-content-center"
+          />
+        </Link>
         <div className="flex-row items-center relative w-full hidden md:inline-flex">
           <input
             placeholder="Busca tu pelicula"
@@ -66,7 +78,7 @@ const NavBar = () => {
             Iniciar sesion
           </button>
           <i
-            onClick={() => toogleVisible()}
+            onClick={() => {toogleVisible()}}
             className="iconoir-menu text-2xl dark:text-white hover:bg-slate-50/10 p-2 rounded-md"
           />
         </div>

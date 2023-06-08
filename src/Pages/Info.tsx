@@ -1,12 +1,55 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import axios from "axios";
 
 import useFetch from "../../hooks/useFetch";
 
 function Info() {
   const [watchVideo, setWatchVideo] = useState<boolean>(false);
+  const [trailer, setTrailer] = useState<string>("");
   const { fetchEndPoint, films } = useFetch();
   const params = useParams();
+
+  interface options {
+    method: string;
+    headers: object;
+  }
+
+  const options: options = {
+    method: "GET",
+    headers: {
+      accept: "application/json",
+      Authorization: `Bearer ` + import.meta.env.VITE_APP_API_KEY,
+    },
+  };
+
+  const videoStopper = (id: string) => {
+    const containerElement = document.getElementById(id);
+    const iframe_tag = containerElement?.querySelector( 'iframe');
+    const video_tag = containerElement?.querySelector( 'video' );
+    if ( iframe_tag) {
+        const iframeSrc = iframe_tag.src;
+        iframe_tag.src = iframeSrc; 
+    }
+    if ( video_tag) {
+        video_tag.pause();
+    }
+  }
+  
+
+  const getTrailer = async () => {
+    if (params.movieId) {
+      const fetchTrailerES = await axios.get(`https://api.themoviedb.org/3/movie/${params.movieId}/videos?language=es`, options)
+      if (fetchTrailerES.data.results[0] !== undefined) {
+        setTrailer(`https://www.youtube.com/embed/${fetchTrailerES.data.results[0].key}?autoplay=0&showinfo=0&controls=1`)
+        
+      } else {
+        const fetchTrailerEN = await axios.get(`https://api.themoviedb.org/3/movie/${params.movieId}/videos?language=en-US`, options)
+        setTrailer(`https://www.youtube.com/embed/${fetchTrailerEN.data.results[0].key}?autoplay=0&showinfo=0&controls=1`)
+      }
+      
+    }
+  }
 
   useEffect(() => {
     window.scroll({
@@ -15,19 +58,21 @@ function Info() {
     fetchEndPoint(`movie/${params.movieId}?language=es`)
   }, []);
 
-  console.log(films)
 
   return (
-    <div className="flex flex-col items-center ">
-      <div className="w-screen h-screen">
+    <div className={`flex flex-col items-center ${watchVideo ? "fixed" : ""}`}>
+      <div className="w-screen h-screen dark:bg-black bg-white">
         <div className="w-screen h-screen z-0">
           <img
+            loading="eager"
             src={`https://image.tmdb.org/t/p/original${films?.backdrop_path}`}
             className="w-full h-screen object-cover object-top fixed z-0 brightness-[0.4] left-0"
+            alt=""
+            
           />
         </div>
         <div className="z-40 flex flex-col absolute w-screen top-24">
-          <div className={`flex flex-row ${Number(films?.genres.length) <= 2 ? "justify-start gap-4" : "justify-between"} px-5`}>
+          <div className={`flex flex-wrap gap-x-4 mb-2 px-5`}>
             {films?.genres.map((g, index) => {
               return (
                 <p className="text-white text-sm" key={index}>
@@ -52,19 +97,18 @@ function Info() {
             <p className="text-white text-sm bg-slate-700/40 px-3 py-1 rounded-md w-fit">
               Valoracion {Math.round(Number(films?.vote_average))}
             </p>
-            <button onClick={() => setWatchVideo(!watchVideo)} className="text-white text-sm bg-slate-700/40 px-3 py-1 rounded-md w-fit">
+            <button onClick={() => {setWatchVideo(!watchVideo), getTrailer(), videoStopper("stopvideo")}} className="text-white text-sm bg-slate-700/40 px-3 py-1 rounded-md w-fit">
               Ver trailer
             </button>
           </div>
           <p className="text-white px-5 my-4">Sinopsis</p>
-          <p className="text-white px-5 text-sm">{films?.overview}</p>
-          <div className="relative w-full h-[350px]">
-            <div className={`fixed w-full top-[220px] ${watchVideo ? "-right-0" : "-right-full"} transition-all duration-300`}>
+          <p className="text-white px-5 text-sm break-normal text-justify text-ellipsis">{films?.overview}</p>
+          <div className="relative w-full h-[350px] flex flex-row">
+            <div id="stopvideo" className={`fixed w-[calc(100vw-40px)] top-[220px] overflow-hidden rounded-3xl ${watchVideo ? "right-5" : "-right-full"} transition-all duration-300`}>
                 <iframe
-                    id="popover-click"
-                    allowFullScreen
+                    allowFullScreen 
                     className="w-full h-[300px]"
-                    src={`https://www.youtube.com/embed/L0anWmmd8TI?autoplay=1&showinfo=0&controls=1`}
+                    src={trailer}
                 />
             </div>
           </div>

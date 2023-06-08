@@ -4,7 +4,7 @@ import { RootState } from "../../utils/store";
 
 //Componentes
 import ListFilms from "../components/Home/ListPopularFilms";
-import ListTrendFilms from "../components/Home/ListWrapFilms";
+import ListWrapFilms from "../components/Home/ListWrapFilms";
 import { useEffect, useState } from "react";
 
 
@@ -31,14 +31,14 @@ function Home() {
   },[])
 
   return (
-    <div  className="flex flex-col items-center">
-      <div className="w-screen h-screen z-0">
+    <div  className="flex flex-col items-center dark:bg-black bg-white">
+      <div className="w-screen h-screen z-0 ">
         <img src={url}
           className="w-full h-screen object-cover object-top fixed z-0 dark:brightness-[0.5] brightness-[1.1] left-0"
         />
       </div>
       <ListFilms/>
-      <ListTrendFilms/>
+      <ListWrapFilms/>
     </div>
   );
 }

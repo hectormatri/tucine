@@ -8,6 +8,10 @@
   font-family: "Bai Jamjuree", sans-serif;
 }
 
+img {
+  text-indent: -10000px
+}
+
 ::-webkit-scrollbar {
   width: 8px;
 }

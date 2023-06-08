@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 import NavBar from "./components/NavBar";
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 
 import useFetch from "../hooks/useFetch";
 
@@ -21,16 +21,23 @@ const options:options = {
 
 function App() {
   const { fetchEndPoint } = useFetch();
+  const [fixed, setFixed] = useState<boolean>(false);
+  
 
   useEffect(() => {
    fetchEndPoint('discover/movie?language=es')
   }, []);
 
+  
+
+
   return (
     <div  className="w-screen h-screen">
-      <NavBar />
+      <NavBar getFixed={(state) => setFixed(state)}/>
 
-      <Outlet />
+      <div className={`${fixed ? "fixed" : ""}`}>
+       <Outlet />
+      </div>
     </div>
   );
 }

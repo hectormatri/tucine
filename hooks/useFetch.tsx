@@ -6,15 +6,12 @@ import { RootState } from "../utils/store";
 
 //Reducers
 import { handleInitialStateFilms } from "../utils/modelSlice";
-import { handleInitialStateInfoMovie } from "../utils/modelSlice";
-
 import { infoMovieInterface } from "../interfaceFilms"
 
 
 function useFetch() {
   const dispatch = useDispatch();
   const movies = useSelector((state: RootState) => state.filmsDiscover);
- 
 
   const [films, setFilms] = useState<infoMovieInterface>();
  
@@ -40,18 +37,12 @@ function useFetch() {
     if (movies[0] === undefined && url === "discover/movie?language=es") {
         dispatch(handleInitialStateFilms(data.results));
 
-    } else if ((movies[0] !== undefined && url !== "discover/movie?language=es")) {
-      setFilms(data);
-      console.log("hola")
-      
     } else {
-      dispatch(handleInitialStateInfoMovie(data))
-      console.log("adios")
-     
+      setFilms(data); 
     }
   };
 
-  return { fetchEndPoint, films };
+  return { fetchEndPoint, films};
 }
 
 export default useFetch;
