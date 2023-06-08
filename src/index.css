@@ -25,15 +25,13 @@ img {
 }
 
 
-html, body {
-  -webkit-overflow-scrolling-y: touch
-}
 
 
-.scrollingX {
+/* .scrollingX {
   max-width: 100%;
   overflow-x: hidden;
-}
+  
+} */
 
 
 
