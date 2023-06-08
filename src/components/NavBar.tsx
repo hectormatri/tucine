@@ -27,6 +27,11 @@ const NavBar = ({getFixed} : Props) => {
   };
 
   useEffect(() => {
+    if (visible) {
+      document.getElementById("overflowHidden")?.classList.add('sidebaractive')
+    } else {
+      document.getElementById("overflowHidden")?.classList.remove('sidebaractive')
+    }
     getFixed(visible)
   },[visible])
 
@@ -48,7 +53,7 @@ const NavBar = ({getFixed} : Props) => {
           scroll
             ? "bg-slate-50/20 dark:bg-transparent"
             : "bg-white dark:bg-[#111111]"
-        }  w-full py-[15px] flex flex-row items-center fixed z-50 transition-all duration-300`}
+        }  w-full py-[15px] flex flex-row items-center fixed z-40 transition-all duration-300`}
       >
         <Link to="/" className="h-[35px] w-full">
           <img

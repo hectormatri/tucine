@@ -59,8 +59,17 @@ function Info() {
   }, []);
 
 
+  useEffect(() => {
+    if (watchVideo) {
+      document.getElementById("overflowHidden")?.classList.add("sidebaractive")
+    } else {
+      document.getElementById("overflowHidden")?.classList.remove("sidebaractive")
+    }
+  },[watchVideo])
+
+
   return (
-    <div className={`flex flex-col items-center ${watchVideo ? "fixed" : ""}`}>
+    <div className={`flex flex-col items-center `}>
       <div className="w-screen h-screen dark:bg-black bg-white">
         <div className="w-screen h-screen z-0">
           <img
@@ -71,16 +80,8 @@ function Info() {
             
           />
         </div>
-        <div className="z-40 flex flex-col absolute w-screen top-24">
-          <div className={`flex flex-wrap gap-x-4 mb-2 px-5`}>
-            {films?.genres.map((g, index) => {
-              return (
-                <p className="text-white text-sm" key={index}>
-                  {g.name}
-                </p>
-              );
-            })}
-          </div>
+        <div className="flex flex-col absolute w-screen top-24">
+          
           <p className="text-white text-2xl text-start w-full px-5">
             {films?.title}
           </p>
@@ -103,19 +104,32 @@ function Info() {
           </div>
           <p className="text-white px-5 my-4">Sinopsis</p>
           <p className="text-white px-5 text-sm break-normal text-justify text-ellipsis">{films?.overview}</p>
-          <div className="relative w-full h-[350px] flex flex-row">
-            <div id="stopvideo" className={`fixed w-[calc(100vw-40px)] top-[220px] overflow-hidden rounded-3xl ${watchVideo ? "right-5" : "-right-full"} transition-all duration-300`}>
+          <div className={`flex flex-wrap gap-x-4 mb-2 my-9 bg-slate-700/40 mx-5 w-fit px-5 py-1.5 rounded-lg`}>
+            {films?.genres.map((g, index) => {
+              return (
+                <p className="text-white text-sm" key={index}>
+                  {g.name}
+                </p>
+              );
+            })}
+          </div>
+          <div className={`relative w-full h-[350px] flex flex-row  transition-all duration-300 ${watchVideo ? "right-0" : "-right-full"}`}>
+            <div onClick={() => {setWatchVideo(!watchVideo), videoStopper("stopvideo")}} className="bg-slate-900/60 fixed w-screen top-0 h-screen z-40"/>
+            <div id="stopvideo" className={`absolute w-[calc(100vw-40px)] right-5 -top-[200px] overflow-hidden rounded-3xl z-40`}>
+                
                 <iframe
                     allowFullScreen 
                     className="w-full h-[300px]"
                     src={trailer}
                 />
+                
             </div>
+            
           </div>
         </div>
       </div>
-      <div className="flex flex-col bg-white dark:bg-[#121212] z-40 w-full md:items-center items-start">
-        <p className="text-2xl text-start lg:w-[1500px] w-screen py-3 px-6 md:px-0 dark:text-white"></p>
+      <div className="flex flex-col bg-white dark:bg-[#121212] z-30 w-full md:items-center items-start">
+        <p className="text-2xl text-start lg:w-[1500px] w-screen py-3 px-6 md:px-0 dark:text-white">Productoras</p>
       </div>
     </div>
   );

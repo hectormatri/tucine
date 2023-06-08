@@ -22,7 +22,6 @@ const options:options = {
 function App() {
   const { fetchEndPoint } = useFetch();
   const [fixed, setFixed] = useState<boolean>(false);
-  
 
   useEffect(() => {
    fetchEndPoint('discover/movie?language=es')
@@ -30,12 +29,11 @@ function App() {
 
   
 
-
   return (
-    <div  className="w-screen h-screen">
+    <div  className="w-screen h-screen ">
       <NavBar getFixed={(state) => setFixed(state)}/>
 
-      <div className={`${fixed ? "fixed" : ""}`}>
+      <div className={`${fixed ? "" : ""}`}>
        <Outlet />
       </div>
     </div>

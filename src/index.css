@@ -25,12 +25,16 @@ img {
 }
 
 
+
   
 
 #overflowHidden {
   max-width: 100%;
-  overflow-x: hidden;
-  
+  overflow-x: hidden;  
+}
+
+.sidebaractive {
+  overflow-y: hidden; 
 }
 
 #overflowVisible {
