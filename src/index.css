@@ -27,15 +27,14 @@ img {
 
 
 
-/* .scrollingX {
+ .scrollingX {
   max-width: 100%;
   overflow-x: hidden;
-  
-} */
-
-html {
   -webkit-overflow-scrolling: auto;
+  
 }
+
+
 
 .sidebaractive {
   max-height: 100%;
@@ -45,6 +44,7 @@ html {
 #overflowVisible {
   max-width: 100%;
   overflow-x: visible;
+
 }
 
 #overflowVisible::-webkit-scrollbar {
