@@ -24,16 +24,13 @@ img {
   background-color: #ffb500;
 }
 
-html,
-body {
-  touch-action: cross-slide-y;
-  -ms-touch-action: pan-y;
-}
 
 .scrollingX {
   max-width: 100%;
   overflow-x: hidden;
+  -webkit-overflow-scrolling: touch
 }
+
 
 
 .sidebaractive {
