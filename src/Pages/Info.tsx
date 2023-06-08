@@ -69,7 +69,7 @@ function Info() {
 
 
   return (
-    <div className={`flex flex-col items-center`}>
+    <div  className={`flex flex-col items-center scrollingX`}> 
       <div className="w-screen h-screen dark:bg-black bg-white">
         <div className="w-screen h-screen z-0">
           <img
