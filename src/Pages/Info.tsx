@@ -41,11 +41,11 @@ function Info() {
     if (params.movieId) {
       const fetchTrailerES = await axios.get(`https://api.themoviedb.org/3/movie/${params.movieId}/videos?language=es`, options)
       if (fetchTrailerES.data.results[0] !== undefined) {
-        setTrailer(`https://www.youtube.com/embed/${fetchTrailerES.data.results[0].key}?autoplay=0&showinfo=0&controls=1`)
+        setTrailer(`https://www.youtube-nocookie.com/embed/${fetchTrailerES.data.results[0].key}`)
         
       } else {
         const fetchTrailerEN = await axios.get(`https://api.themoviedb.org/3/movie/${params.movieId}/videos?language=en-US`, options)
-        setTrailer(`https://www.youtube.com/embed/${fetchTrailerEN.data.results[0].key}?autoplay=0&showinfo=0&controls=1`)
+        setTrailer(`https://www.youtube-nocookie.com/embed/${fetchTrailerEN.data.results[0].key}`)
       }
       
     }
@@ -118,9 +118,11 @@ function Info() {
             <div id="stopvideo" className={`absolute w-[calc(100vw-40px)] right-5 -top-[200px] overflow-hidden rounded-3xl z-40`}>
                 
                 <iframe
-                    allowFullScreen 
+                    allowFullScreen
+                    referrerPolicy="unsafe-url"
                     className="w-full h-[300px]"
                     src={trailer}
+                    
                 />
                 
             </div>
