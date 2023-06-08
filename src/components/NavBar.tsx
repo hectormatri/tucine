@@ -8,11 +8,8 @@ import useTheme from "../../hooks/useTheme";
 //Componentes
 import SideBar from "./SideBar";
 
-interface Props {
-  getFixed: (state: boolean) => void
-}
 
-const NavBar = ({getFixed} : Props) => {
+const NavBar = () => {
 
   const [scroll, setScroll] = useState<boolean>(true);
   const { visible, toogleVisible } = useVisible();
@@ -32,7 +29,6 @@ const NavBar = ({getFixed} : Props) => {
     } else {
       document.getElementById("overflowHidden")?.classList.remove('sidebaractive')
     }
-    getFixed(visible)
   },[visible])
 
   useEffect(() => {
