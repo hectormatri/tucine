@@ -33,7 +33,9 @@ img {
   
 } */
 
-
+html {
+  -webkit-overflow-scrolling: auto;
+}
 
 .sidebaractive {
   max-height: 100%;
@@ -43,7 +45,6 @@ img {
 #overflowVisible {
   max-width: 100%;
   overflow-x: visible;
-  -webkit-overflow-scrolling: auto;
 }
 
 #overflowVisible::-webkit-scrollbar {
