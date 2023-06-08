@@ -25,7 +25,7 @@ img {
 }
 
 body {
-  touch-action: none;
+  touch-action: cross-slide-y;
   -ms-touch-action: none;
 }
 
