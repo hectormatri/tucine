@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 import NavBar from "./components/NavBar";
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 
 import useFetch from "../hooks/useFetch";
 
