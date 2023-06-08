@@ -24,9 +24,10 @@ img {
   background-color: #ffb500;
 }
 
+html,
 body {
   touch-action: cross-slide-y;
-  -ms-touch-action: none;
+  -ms-touch-action: pan-y;
 }
 
 .scrollingX {
