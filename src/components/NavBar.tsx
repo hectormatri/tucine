@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 
 //Hooks
 import useVisible from "../../hooks/useVisible";
@@ -8,12 +8,11 @@ import useTheme from "../../hooks/useTheme";
 //Componentes
 import SideBar from "./SideBar";
 
-
 const NavBar = () => {
-
   const [scroll, setScroll] = useState<boolean>(true);
   const { visible, toogleVisible } = useVisible();
   const { theme, handleToogleTheme } = useTheme();
+  const [search, setSearch] = useState<boolean>(false);
 
   const handleChangeState = () => {
     toogleVisible();
@@ -24,12 +23,12 @@ const NavBar = () => {
   };
 
   useEffect(() => {
-    if (visible) {
-      document.getElementById("sidebar")?.classList.add('sidebaractive')
+    if (visible || search) {
+      document.getElementById("sidebar")?.classList.add("sidebaractive");
     } else {
-      document.getElementById("sidebar")?.classList.remove('sidebaractive')
+      document.getElementById("sidebar")?.classList.remove("sidebaractive");
     }
-  },[visible])
+  }, [visible, search]);
 
   useEffect(() => {
     addEventListener("scroll", () => {
@@ -78,8 +77,19 @@ const NavBar = () => {
           <button className="bg-[#FFB500] px-3 py-1 rounded-lg font-bold w-32 hidden md:inline-flex">
             Iniciar sesion
           </button>
+
+            
+          <i onClick={() => setSearch(!search)} className={`iconoir-search z-50 ${search ? "translate-y-[53px]" : "translate-y-0"} dark:text-white text-2xl absolute right-16 transition-all duration-300`}/>
+          <input
+            autoFocus={true} 
+            className={`bg-zinc-900/30 ${search ? "-translate-x-8" : "translate-x-[calc(100vw+20px)]"} dark:text-white px-5 outline-none border-2 w-[280px] border-[#FFB500] rounded-lg absolute top-[70px] py-1 bg-transparent z-40 transition-all duration-300`}/>  
+          <div onClick={() => setSearch(!search)} className={`absolute w-screen h-screen bg-zinc-900/60 left-0 top-0 z-30 ${search ? "-translate-x-0" : "translate-x-[calc(100vw+20px)]"} transition-all duration-300`}/>
+
+
           <i
-            onClick={() => {toogleVisible()}}
+            onClick={() => {
+              toogleVisible();
+            }}
             className="iconoir-menu text-2xl dark:text-white hover:bg-slate-50/10 p-2 rounded-md"
           />
         </div>

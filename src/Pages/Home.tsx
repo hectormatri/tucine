@@ -5,6 +5,20 @@ import { RootState } from "../../utils/store";
 //Componentes
 import ListFilms from "../components/Home/ListPopularFilms";
 
+interface options {
+  method: string;
+  headers: object;
+}
+
+const options: options = {
+  method: "GET",
+  headers: {
+    accept: "application/json",
+    Authorization: `Bearer ` + import.meta.env.VITE_APP_API_KEY,
+  },
+};
+
+
 function Home() {
   const imageHome = useSelector((state: RootState) => state.filmsDiscover)
   const [url, setUrl] = useState<string>();
@@ -23,6 +37,7 @@ function Home() {
     }
   }
 
+
   useEffect(() => {
     window.scrollTo({
       top: 0,
@@ -40,6 +55,7 @@ function Home() {
         />
       </div>
       <ListFilms/>
+      
     </div>
   );
 }

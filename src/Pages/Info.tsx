@@ -71,6 +71,8 @@ function Info() {
     }
   };
 
+  console.log(trailer)
+
   const getSimilar = async () => {
     const {data} = await axios.get(`https://api.themoviedb.org/3/movie/${params.movieId}/similar?language=es`, options)
     setSimilar(data.results)
@@ -97,10 +99,10 @@ function Info() {
 
   useEffect(() => {
     if (watchVideo) {
-      document.getElementById("overflowHidden")?.classList.add("sidebaractive");
+      document.getElementById("sidebar")?.classList.add("sidebaractive");
     } else {
       document
-        .getElementById("overflowHidden")
+        .getElementById("sidebar")
         ?.classList.remove("sidebaractive");
     }
   }, [watchVideo]);

@@ -6,11 +6,12 @@ interface Props {
 }
 
 function ListWrapFilms({similar}: Props) {
+  
   return (
-    <div  className="px-5 flex flex-wrap justify-between">
+    <div  className="flex flex-wrap justify-between px-5">
         
          {
-          similar?.map((s, index) => {
+          similar?.filter((f) => (f.poster_path !== null) && (f.backdrop_path !== null) && (f.overview !== "")).map((s, index) => {
             return (
               <CardFilmWrap 
                 key={index}
