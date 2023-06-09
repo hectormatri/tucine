@@ -4,11 +4,17 @@ import axios from "axios";
 
 import useFetch from "../../hooks/useFetch";
 
+//Componentes
+import CardActor from "../components/CardActor";
 
+
+//Interfaces
+import { Cast } from "../../interfaceFilms";
 
 function Info() {
   const [watchVideo, setWatchVideo] = useState<boolean>(false);
   const [trailer, setTrailer] = useState<string>("");
+  const [reparto, setReparto] = useState<Cast[]>();
   const { fetchEndPoint, films } = useFetch();
   const params = useParams();
 
@@ -55,8 +61,8 @@ function Info() {
   }
 
   const getReparto = async () => {
-    //const { data } = await axios.get(`https://api.themoviedb.org/3/movie/${params.movieId}/credits?language=es`, options)
-    //setReparto(data.cast)
+    const { data } = await axios.get(`https://api.themoviedb.org/3/movie/${params.movieId}/credits?language=es`, options)
+    setReparto(data.cast)
   }
 
   useEffect(() => {
@@ -141,9 +147,17 @@ function Info() {
           </div>
         </div>
       </div>
-      <div className="flex flex-col bg-white dark:bg-[#121212] z-30 w-full md:items-center items-start">
+      <div  className="flex flex-col bg-white dark:bg-[#121212] z-30 w-full md:items-center items-start">
         <p className="text-2xl text-start lg:w-[1500px] w-screen py-3 px-6 md:px-0 dark:text-white">Reparto</p>
-            
+          <div className="flex flex-row px-6 justify-between scrollingX w-screen">   
+             {
+              reparto?.filter((r) => (r.character !== "Additional Voices (voice)" || undefined) && (r.profile_path !== null)).map((r, index) => {
+                return (
+                  <CardActor key={index} repartoCharacter={r}/>
+                )
+              })
+            }
+          </div>
       </div>
     </div>
   );

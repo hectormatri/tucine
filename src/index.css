@@ -12,9 +12,7 @@ img {
   text-indent: -10000px
 }
 
-::-webkit-scrollbar {
-  width: 8px;
-}
+
 
 ::-webkit-scrollbar-track {
   background-color: #e7e7e7;
@@ -24,17 +22,11 @@ img {
   background-color: #ffb500;
 }
 
-
-
-
  .scrollingX {
   max-width: 100%;
   overflow-x: hidden;
-  -webkit-overflow-scrolling: auto;
-  
+  -webkit-overflow-scrolling: auto;   
 }
-
-
 
 .sidebaractive {
   max-height: 100%;
@@ -61,9 +53,17 @@ img {
   #overflowVisible::-webkit-scrollbar {
     height: 2px;
   }
+
+  /*Pruebas*/
+  .scrollingX::-webkit-scrollbar {
+    width: 0px;
+  }
 }
 
-:root,
-#overflowVisible::-webkit-scrollbar-track:root.dark {
-  background-color: #121212;
+@media only screen and (min-width: 640px) {
+  
+  /*Pruebas*/
+  .scrollingX::-webkit-scrollbar {
+    width: 8px;
+  }
 }

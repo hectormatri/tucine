@@ -34,9 +34,7 @@ function Home() {
     
   },[])
 
-  /*  */
-  console.log(platform)
-
+  
   return (
     <div  className={`flex flex-col ${platform === "iOS" ? "" : "w-[calc(100vw+8px)]"}  items-center dark:bg-black bg-white overflow-x-hidden`}>
       <div className="w-screen h-screen z-0 ">
