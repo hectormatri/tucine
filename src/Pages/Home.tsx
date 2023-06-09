@@ -30,7 +30,7 @@ function Home() {
     checkImg();
   },[])
 
-  /*  //overflow-x-hidden----IOS */
+  
 
   return (
     <div  className="flex flex-col w-[calc(100vw+8px)] items-center dark:bg-black bg-white overflow-x-hidden">

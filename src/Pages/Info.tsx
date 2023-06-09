@@ -4,6 +4,8 @@ import axios from "axios";
 
 import useFetch from "../../hooks/useFetch";
 
+
+
 function Info() {
   const [watchVideo, setWatchVideo] = useState<boolean>(false);
   const [trailer, setTrailer] = useState<string>("");
@@ -40,6 +42,7 @@ function Info() {
   const getTrailer = async () => {
     if (params.movieId) {
       const fetchTrailerES = await axios.get(`https://api.themoviedb.org/3/movie/${params.movieId}/videos?language=es`, options)
+      
       if (fetchTrailerES.data.results[0] !== undefined) {
         setTrailer(`https://www.youtube-nocookie.com/embed/${fetchTrailerES.data.results[0].key}`)
         
@@ -51,11 +54,19 @@ function Info() {
     }
   }
 
+  const getReparto = async () => {
+    //const { data } = await axios.get(`https://api.themoviedb.org/3/movie/${params.movieId}/credits?language=es`, options)
+    //setReparto(data.cast)
+  }
+
   useEffect(() => {
     window.scroll({
       top: 0,
     });
     fetchEndPoint(`movie/${params.movieId}?language=es`)
+    getReparto();
+    
+
   }, []);
 
 
@@ -131,7 +142,8 @@ function Info() {
         </div>
       </div>
       <div className="flex flex-col bg-white dark:bg-[#121212] z-30 w-full md:items-center items-start">
-        <p className="text-2xl text-start lg:w-[1500px] w-screen py-3 px-6 md:px-0 dark:text-white">Productoras</p>
+        <p className="text-2xl text-start lg:w-[1500px] w-screen py-3 px-6 md:px-0 dark:text-white">Reparto</p>
+            
       </div>
     </div>
   );
