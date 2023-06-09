@@ -71,8 +71,6 @@ function Info() {
     });
     fetchEndPoint(`movie/${params.movieId}?language=es`)
     getReparto();
-    
-
   }, []);
 
 

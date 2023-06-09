@@ -6,13 +6,9 @@ import { RootState } from "../../utils/store";
 import ListFilms from "../components/Home/ListPopularFilms";
 import ListWrapFilms from "../components/Home/ListWrapFilms";
 
-//Hooks
-import usePlatform from "../../hooks/usePlatforn"
-
 function Home() {
   const imageHome = useSelector((state: RootState) => state.filmsDiscover)
   const [url, setUrl] = useState<string>();
-  const {platform, getMobileOperatingSystem} = usePlatform();
 
   function numberRandom(min: number, max: number) {
     min = Math.ceil(min);
@@ -29,14 +25,12 @@ function Home() {
   }
 
   useEffect(() => {
-    checkImg();
-    getMobileOperatingSystem()
-    
+    checkImg();    
   },[])
 
   
   return (
-    <div  className={`flex flex-col ${platform === "iOS" ? "" : ""}  items-center dark:bg-black bg-white overflow-x-hidden`}>
+    <div  className={`flex flex-col items-center dark:bg-black bg-white`}>
       <div className="w-screen h-screen z-0 ">
         <img src={url}
           className="w-full h-screen object-cover object-top fixed z-0 dark:brightness-[0.5] brightness-[1.1] left-0"

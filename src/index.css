@@ -12,7 +12,9 @@ img {
   text-indent: -10000px
 }
 
-
+.scrollingX::-webkit-scrollbar {
+  width: 8px;
+}
 
 ::-webkit-scrollbar-track {
   background-color: #e7e7e7;
@@ -66,4 +68,5 @@ img {
   .scrollingX::-webkit-scrollbar {
     width: 8px;
   }
+  #overflowVisible {}
 }
