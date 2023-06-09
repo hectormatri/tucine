@@ -43,6 +43,7 @@ function Info() {
         video_tag.pause();
     }
   }
+
   
 
   const getTrailer = async () => {
@@ -89,7 +90,7 @@ function Info() {
         <div className="w-screen h-screen z-0">
           <img
             loading="eager"
-            src={`https://image.tmdb.org/t/p/original${films?.backdrop_path}`}
+            src={films?.backdrop_path !== undefined ? `https://image.tmdb.org/t/p/original${films?.backdrop_path}` : ""}
             className="w-full h-screen object-cover object-top fixed z-0 brightness-[0.4] left-0"
             alt=""
             
