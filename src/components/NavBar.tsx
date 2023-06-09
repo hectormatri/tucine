@@ -25,9 +25,9 @@ const NavBar = () => {
 
   useEffect(() => {
     if (visible) {
-      document.getElementById("overflowHidden")?.classList.add('sidebaractive')
+      document.getElementById("sidebar")?.classList.add('sidebaractive')
     } else {
-      document.getElementById("overflowHidden")?.classList.remove('sidebaractive')
+      document.getElementById("sidebar")?.classList.remove('sidebaractive')
     }
   },[visible])
 

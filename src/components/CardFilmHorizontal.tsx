@@ -10,14 +10,14 @@ interface Film {
 
 }
 
-function CardFilm({ title, path, date, valoration, id }: Film) {
+function CardFilmHorizontal({ title, path, date, valoration, id }: Film) {
    
 
   
   return (
     <Link to={`/movieId/${id}`} className=" hover:bg-white/5 relative flex flex-col justify-between items-center h-[455px] w-[233.33px] rounded-xl hover:scale-105 transition-all duration-300 ">
       <div className="absolute bg-white/60 w-7 h-7 p-1 rounded-full right-3 top-3">
-        <p className="text-center font-bold text-sm ">{valoration}</p>
+        <p className="text-center font-bold text-sm ">{valoration.toFixed(1)}</p>
       </div>
       <div>
         <img src={path} className="h-[350px] rounded-t-xl" />
@@ -31,4 +31,4 @@ function CardFilm({ title, path, date, valoration, id }: Film) {
   );
 }
 
-export default CardFilm;
+export default CardFilmHorizontal;

@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../../utils/store";
 
 //Componentes
-import CardFilm from "../CardFilm";
+import CardFilmHorizontal from "../CardFilmHorizontal";
 
 
 function ListFilms() {
@@ -17,7 +17,7 @@ function ListFilms() {
       >
         {filmsDiscover.map((f, index: number) => {
           return (
-            <CardFilm
+            <CardFilmHorizontal
               key={index}
               title={f.title}
               path={`https://image.tmdb.org/t/p/w780${f.poster_path}`}

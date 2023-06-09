@@ -4,7 +4,6 @@ import { RootState } from "../../utils/store";
 
 //Componentes
 import ListFilms from "../components/Home/ListPopularFilms";
-import ListWrapFilms from "../components/Home/ListWrapFilms";
 
 function Home() {
   const imageHome = useSelector((state: RootState) => state.filmsDiscover)
@@ -41,7 +40,6 @@ function Home() {
         />
       </div>
       <ListFilms/>
-      <ListWrapFilms/>
     </div>
   );
 }

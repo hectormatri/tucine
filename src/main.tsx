@@ -1,6 +1,6 @@
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route, HashRouter } from "react-router-dom";
 import { Provider } from "react-redux"
 import {store} from "../utils/store"
 
@@ -12,7 +12,7 @@ import Info from "./Pages/Info.tsx";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <Provider store={store}>
-    <BrowserRouter>
+    <HashRouter >
       <Routes>
         <Route path="/" element={<App />}>
           <Route path="/" element={<Home />}/>
@@ -20,6 +20,6 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
           <Route path="/movieId/:movieId" element={<Info/>}/>
         </Route>
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   </Provider>
 );
