@@ -22,6 +22,8 @@ const options:options = {
 function App() {
   const { fetchEndPoint } = useFetch();
 
+  
+
   useEffect(() => {
    fetchEndPoint('discover/movie?language=es')
   }, []);
