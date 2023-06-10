@@ -46,12 +46,12 @@ const NavBar = () => {
   };
 
   useEffect(() => {
-    if (visible) {
+    if (visible || search) {
       document.getElementById("sidebar")?.classList.add("sidebaractive");
     } else {
       document.getElementById("sidebar")?.classList.remove("sidebaractive");
     }
-  }, [visible]);
+  }, [visible, search]);
 
 
   const searchMovie = async (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -139,13 +139,14 @@ const NavBar = () => {
           </button>
 
             
-          <i onClick={() => setSearch(!search)} className={`iconoir-${search ? "cancel" : "search"} z-50 dark:text-white text-2xl absolute right-16`}/>
+          <i onClick={() => {setSearch(!search), document.getElementById('search')?.autofocus}} className={`iconoir-${search ? "cancel" : "search"} z-50 dark:text-white text-2xl absolute right-16`}/>
           <input
+            id="search"
             autoFocus={true}
             value={query}
             onKeyDown={(e) => searchMovie(e)}
             onChange={(e) => setQuery(e.target.value)}
-            className={`absolute h-[40px] w-[calc(100vw-90px)] ${search ? "-translate-x-10" : "translate-x-[calc(100vw+20px)]"} dark:text-white px-5 outline-none border-2 w-[280px] border-[#FFB500] rounded-lg absolutepy-1 bg-[#121212]/30 z-40 transition-all duration-300`}/>  
+            className={`absolute h-[45px] w-[calc(100vw-90px)] ${search ? "-translate-x-10" : "translate-x-[calc(100vw+20px)]"} dark:text-white px-5 outline-none border-2 w-[280px] border-[#FFB500] rounded-lg absolutepy-1 bg-[#121212]/30 z-40 transition-all duration-300`}/>  
           
             
 
