@@ -54,9 +54,9 @@ const NavBar = () => {
   }, [visible, search]);
 
 
-  const searchMovie = async (key: string) => {
+  const searchMovie = async (e: React.KeyboardEvent<HTMLInputElement>) => {
     
-    if (key === "Enter") {
+    if (e.key === "Enter") {
     
     const {data} = await axios.get(`https://api.themoviedb.org/3/search/movie?query=${query}&include_adult=false&language=es&page=1`, options)  
     if (data.results[0] === undefined) {
@@ -74,6 +74,16 @@ const NavBar = () => {
     }
     
     setSearch(false)
+    const field = document.createElement('input');
+    field.setAttribute('type', 'text');
+    document.body.appendChild(field);
+
+    setTimeout(function() {
+        field.focus();
+        setTimeout(function() {
+            field.setAttribute('style', 'display:none;');
+        }, 50);
+    }, 50);
     
   }
   }
@@ -132,8 +142,8 @@ const NavBar = () => {
           <i onClick={() => setSearch(!search)} className={`iconoir-search z-50 ${search ? "translate-y-[150px]" : "translate-y-0"} dark:text-white text-2xl absolute right-16 transition-all duration-300`}/>
           <input
             autoFocus={true}
-            value={query} 
-            onKeyDown={(e) => searchMovie(e.key)}
+            value={query}
+            onKeyDown={(e) => searchMovie(e)}
             onChange={(e) => setQuery(e.target.value)}
             className={`h-[40px] w-[280px] ${search ? "-translate-x-8" : "translate-x-[calc(100vw+20px)]"} dark:text-white px-5 outline-none border-2 w-[280px] border-[#FFB500] rounded-lg absolute top-[165px] py-1 bg-[#121212] z-40 transition-all duration-300`}/>  
           <div onClick={() => setSearch(!search)} className={`absolute w-screen h-screen bg-zinc-900/60 left-0 top-0 z-30 ${search ? "-translate-x-0" : "translate-x-[calc(100vw+20px)]"} transition-all duration-300`}/>
