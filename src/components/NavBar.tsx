@@ -46,12 +46,12 @@ const NavBar = () => {
   };
 
   useEffect(() => {
-    if (visible || search) {
+    if (visible) {
       document.getElementById("sidebar")?.classList.add("sidebaractive");
     } else {
       document.getElementById("sidebar")?.classList.remove("sidebaractive");
     }
-  }, [visible, search]);
+  }, [visible]);
 
 
   const searchMovie = async (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -110,7 +110,7 @@ const NavBar = () => {
             : "bg-white dark:bg-[#111111]"
         }  w-full py-[15px] flex flex-row items-center fixed z-40 transition-all duration-300`}
       >
-        <Link to="/" className="h-[35px] w-full">
+        <Link to="/" className={`h-[35px] w-full relative ${search ? "right-full" : "right-0"} transition-all duration-300`}>
           <img
             src="/assets/Logo.svg"
             className="h-[35px] w-full grid place-content-center"
@@ -139,14 +139,14 @@ const NavBar = () => {
           </button>
 
             
-          <i onClick={() => setSearch(!search)} className={`iconoir-search z-50 ${search ? "translate-y-[150px]" : "translate-y-0"} dark:text-white text-2xl absolute right-16 transition-all duration-300`}/>
+          <i onClick={() => setSearch(!search)} className={`iconoir-${search ? "cancel" : "search"} z-50 dark:text-white text-2xl absolute right-16`}/>
           <input
             autoFocus={true}
             value={query}
             onKeyDown={(e) => searchMovie(e)}
             onChange={(e) => setQuery(e.target.value)}
-            className={`h-[40px] w-[280px] ${search ? "-translate-x-8" : "translate-x-[calc(100vw+20px)]"} dark:text-white px-5 outline-none border-2 w-[280px] border-[#FFB500] rounded-lg absolute top-[165px] py-1 bg-[#121212] z-40 transition-all duration-300`}/>  
-          <div onClick={() => setSearch(!search)} className={`absolute w-screen h-screen bg-zinc-900/60 left-0 top-0 z-30 ${search ? "-translate-x-0" : "translate-x-[calc(100vw+20px)]"} transition-all duration-300`}/>
+            className={`absolute h-[40px] w-[280px] ${search ? "-translate-x-10" : "translate-x-[calc(100vw+20px)]"} dark:text-white px-5 outline-none border-2 w-[280px] border-[#FFB500] rounded-lg absolutepy-1 bg-[#121212]/30 z-40 transition-all duration-300`}/>  
+          
             
 
 

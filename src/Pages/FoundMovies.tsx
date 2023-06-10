@@ -37,6 +37,10 @@ function FoundMovies() {
   }
   
   useEffect(() => {
+    window.scroll({
+      top: 0,
+      left: 0,
+    });
     getMoviesFound()
   },[])
  
