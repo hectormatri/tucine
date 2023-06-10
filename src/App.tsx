@@ -21,7 +21,6 @@ const options:options = {
 
 function App() {
   const { fetchEndPoint } = useFetch();
-
   
 
   useEffect(() => {

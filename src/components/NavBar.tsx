@@ -88,6 +88,12 @@ const NavBar = () => {
   }
   }
 
+  const stateInput = () => {
+    setSearch(!search)
+    if (query !== "") {
+      setQuery("")
+    } 
+  } 
   
 
   useEffect(() => {
@@ -139,10 +145,10 @@ const NavBar = () => {
           </button>
 
             
-          <i onClick={() => {setSearch(!search), document.getElementById('search')?.autofocus}} className={`iconoir-${search ? "cancel" : "search"} z-50 dark:text-white text-2xl absolute right-16`}/>
+          <i onClick={() => {stateInput(), document.getElementById('search')?.focus()}} className={`iconoir-${search ? "cancel" : "search"} z-50 dark:text-white text-2xl absolute right-16`}/>
           <input
             id="search"
-            autoFocus={true}
+            autoFocus
             value={query}
             onKeyDown={(e) => searchMovie(e)}
             onChange={(e) => setQuery(e.target.value)}

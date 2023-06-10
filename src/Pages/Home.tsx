@@ -2,8 +2,11 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../utils/store";
 
+
 //Componentes
 import ListFilms from "../components/Home/ListPopularFilms";
+
+
 
 interface options {
   method: string;
@@ -22,6 +25,7 @@ const options: options = {
 function Home() {
   const imageHome = useSelector((state: RootState) => state.filmsDiscover)
   const [url, setUrl] = useState<string>();
+  
 
   function numberRandom(min: number, max: number) {
     min = Math.ceil(min);
@@ -39,11 +43,10 @@ function Home() {
 
 
   useEffect(() => {
-    window.scrollTo({
-      top: 0,
-      left: 0,
-    })
-    checkImg();    
+    
+    
+    checkImg();
+    
   },[])
 
   
