@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
+import axios from "axios";
 
 //Hooks
 import useVisible from "../../hooks/useVisible";
@@ -8,11 +9,33 @@ import useTheme from "../../hooks/useTheme";
 //Componentes
 import SideBar from "./SideBar";
 
+//Redux
+import { useDispatch } from "react-redux";
+import { handleMovieFound } from "../../utils/modelSlice";
+
+interface options {
+  method: string;
+  headers: object;
+}
+
+const options: options = {
+  method: "GET",
+  headers: {
+    accept: "application/json",
+    Authorization: `Bearer ` + import.meta.env.VITE_APP_API_KEY,
+  },
+};
+
+
 const NavBar = () => {
   const [scroll, setScroll] = useState<boolean>(true);
   const { visible, toogleVisible } = useVisible();
   const { theme, handleToogleTheme } = useTheme();
   const [search, setSearch] = useState<boolean>(false);
+  const [query, setQuery] = useState<string>("");
+  const location = useLocation();
+  const dispatch = useDispatch();
+  const navigation = useNavigate();
 
   const handleChangeState = () => {
     toogleVisible();
@@ -29,6 +52,33 @@ const NavBar = () => {
       document.getElementById("sidebar")?.classList.remove("sidebaractive");
     }
   }, [visible, search]);
+
+
+  const searchMovie = async (key: string) => {
+    
+    if (key === "Enter") {
+    
+    const {data} = await axios.get(`https://api.themoviedb.org/3/search/movie?query=${query}&include_adult=false&language=es&page=1`, options)  
+    if (data.results[0] === undefined) {
+      dispatch(handleMovieFound(data.results))
+    }
+    
+   
+    localStorage.setItem("busquedas", query)
+    setQuery("")
+
+    if(location.pathname === "/found-movies") {
+      window.location.reload();
+    } else {
+      navigation("found-movies")
+    }
+    
+    setSearch(false)
+    
+  }
+  }
+
+  
 
   useEffect(() => {
     addEventListener("scroll", () => {
@@ -79,11 +129,15 @@ const NavBar = () => {
           </button>
 
             
-          <i onClick={() => setSearch(!search)} className={`iconoir-search z-50 ${search ? "translate-y-[53px]" : "translate-y-0"} dark:text-white text-2xl absolute right-16 transition-all duration-300`}/>
+          <i onClick={() => setSearch(!search)} className={`iconoir-search z-50 ${search ? "translate-y-[150px]" : "translate-y-0"} dark:text-white text-2xl absolute right-16 transition-all duration-300`}/>
           <input
-            autoFocus={true} 
-            className={`bg-zinc-900/30 ${search ? "-translate-x-8" : "translate-x-[calc(100vw+20px)]"} dark:text-white px-5 outline-none border-2 w-[280px] border-[#FFB500] rounded-lg absolute top-[70px] py-1 bg-transparent z-40 transition-all duration-300`}/>  
+            autoFocus={true}
+            value={query} 
+            onKeyDown={(e) => searchMovie(e.key)}
+            onChange={(e) => setQuery(e.target.value)}
+            className={`h-[40px] w-[280px] ${search ? "-translate-x-8" : "translate-x-[calc(100vw+20px)]"} dark:text-white px-5 outline-none border-2 w-[280px] border-[#FFB500] rounded-lg absolute top-[165px] py-1 bg-[#121212] z-40 transition-all duration-300`}/>  
           <div onClick={() => setSearch(!search)} className={`absolute w-screen h-screen bg-zinc-900/60 left-0 top-0 z-30 ${search ? "-translate-x-0" : "translate-x-[calc(100vw+20px)]"} transition-all duration-300`}/>
+            
 
 
           <i

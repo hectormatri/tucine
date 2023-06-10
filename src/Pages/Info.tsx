@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import Lottie from "lottie-react";
 import axios from "axios";
 
 import useFetch from "../../hooks/useFetch";
@@ -7,6 +8,7 @@ import useFetch from "../../hooks/useFetch";
 //Componentes
 import CardActor from "../components/CardActor";
 import ListWrapFilms from "../components/Home/ListWrapFilms";
+import trailerNotFound from "../../public/lottie/trailerNotFound.json"
 
 //Interfaces
 import { Cast } from "../../interfaceFilms";
@@ -60,18 +62,22 @@ function Info() {
           `https://www.youtube-nocookie.com/embed/${fetchTrailerES.data.results[0].key}`
         );
       } else {
-        const fetchTrailerEN = await axios.get(
-          `https://api.themoviedb.org/3/movie/${params.movieId}/videos?language=en-US`,
-          options
-        );
-        setTrailer(
-          `https://www.youtube-nocookie.com/embed/${fetchTrailerEN.data.results[0].key}`
-        );
+          const fetchTrailerEN = await axios.get(
+            `https://api.themoviedb.org/3/movie/${params.movieId}/videos?language=en-US`,
+            options
+          )
+          if (fetchTrailerEN.data.results[0] !== undefined) {
+            setTrailer(
+              `https://www.youtube-nocookie.com/embed/${fetchTrailerEN.data.results[0].key}`
+            );
+          } else {
+            setTrailer("")
+          }
       }
     }
   };
 
-  console.log(trailer)
+  console.log(films?.overview === "")
 
   const getSimilar = async () => {
     const {data} = await axios.get(`https://api.themoviedb.org/3/movie/${params.movieId}/similar?language=es`, options)
@@ -151,7 +157,7 @@ function Info() {
             </button>
           </div>
           <p className="text-white px-5 my-4">Sinopsis</p>
-          <p className="text-white px-5 text-sm break-normal text-justify text-ellipsis">
+          <p  className="text-white px-5 text-sm break-normal text-justify text-ellipsis h-[260px] overflow-y-scroll">
             {films?.overview}
           </p>
           <div
@@ -165,6 +171,7 @@ function Info() {
               );
             })}
           </div>
+
           <div
             className={`fixed w-full h-[350px] flex flex-row z-40 top-[55%] transition-all duration-300 ${
               watchVideo ? "right-0" : "-right-full"
@@ -180,20 +187,30 @@ function Info() {
               id="stopvideo"
               className={`absolute w-[calc(100vw-40px)] right-5 -top-[200px] overflow-hidden rounded-3xl z-40`}
             >
-              <iframe
-                allowFullScreen
-                referrerPolicy="unsafe-url"
-                className="w-full h-[300px]"
-                src={trailer}
-              />
+              { trailer !== "" ? 
+                <iframe
+                  allowFullScreen
+                  referrerPolicy="unsafe-url"
+                  className="w-full h-[300px]"
+                  src={trailer}
+                /> : 
+                  <div className="h-[300px] grid place-content-center bg-zinc-900/90">
+                    <Lottie loop animationData={trailerNotFound}/>
+                  </div>
+               
+                
+              }
             </div>
           </div>
+
+
+
         </div>
       </div>
 
       <div className="dark:bg-[#121212] bg-white flex flex-col z-30 w-screen">
         <p className="dark:text-white text-2xl my-5 px-5">Reparto</p>
-        <div className="flex flex-row justify-between pe-5 w-screen overflow-x-scroll">
+        <div className="flex flex-row justify-between pe-5 w-screen overflow-x-scroll pb-5">
           {reparto
             ?.filter(
               (r) =>
@@ -206,8 +223,7 @@ function Info() {
         </div>
       </div>
       <div  className="dark:bg-[#121212] bg-white flex flex-col z-30 w-screen pb-6">
-        <p  className="dark:text-white text-2xl my-5 px-5">Similares</p>
-        <ListWrapFilms similar={similar}/>
+        <ListWrapFilms titleWrap="Similares" similar={similar}/>
       </div>
     </div>
   );

@@ -14,5 +14,6 @@ export const store = configureStore({
         filmsDiscover: modelSlice.filmDiscoverSlice,
         infoMovie: modelSlice.infoMovie,
         trailerMovie: modelSlice.trailerMovie,
+        movieFound: modelSlice.movieFound,
     }
 })
