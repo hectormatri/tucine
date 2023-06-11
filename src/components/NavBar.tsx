@@ -47,8 +47,12 @@ const NavBar = () => {
 
   useEffect(() => {
     if (visible || search) {
+      const body = document.getElementsByTagName("body")[0]
+      body.classList.add("scroller-blocker")
       document.getElementById("sidebar")?.classList.add("sidebaractive");
     } else {
+      const body = document.getElementsByTagName("body")[0]
+      body.classList.remove("scroller-blocker")
       document.getElementById("sidebar")?.classList.remove("sidebaractive");
     }
   }, [visible, search]);
