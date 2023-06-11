@@ -15,7 +15,6 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <Provider store={store}>
     <HashRouter >
       <Routes>
-        
         <Route path="/" element={<App />}>
           <Route path="/" element={<Home />}/>
           <Route path="/explore-films" element={<Explore />} />

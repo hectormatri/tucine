@@ -74,16 +74,6 @@ const NavBar = () => {
     }
     
     setSearch(false)
-    const field = document.createElement('input');
-    field.setAttribute('type', 'text');
-    document.body.appendChild(field);
-
-    setTimeout(function() {
-        field.focus();
-        setTimeout(function() {
-            field.setAttribute('style', 'display:none;');
-        }, 50);
-    }, 50);
     
   }
   }
@@ -116,7 +106,7 @@ const NavBar = () => {
             : "bg-white dark:bg-[#111111]"
         }  w-full py-[15px] flex flex-row items-center fixed z-40 transition-all duration-300`}
       >
-        <Link to="/" className={`h-[35px] w-full relative ${search ? "right-full" : "right-0"} transition-all duration-300`}>
+        <Link onClick={() => scrollTo(0, 0)} to="/" className={`h-[35px] w-full relative ${search ? "right-full" : "right-0"} transition-all duration-300`}>
           <img
             src="/assets/Logo.svg"
             className="h-[35px] w-full grid place-content-center"
@@ -145,7 +135,7 @@ const NavBar = () => {
           </button>
 
             
-          <i onClick={() => {stateInput(), document.getElementById('search')?.focus()}} className={`iconoir-${search ? "cancel" : "search"} z-50 dark:text-white text-2xl absolute right-16`}/>
+          <i onClick={() => {stateInput(), document.getElementById("search")?.focus()}} className={`iconoir-${search ? "cancel" : "search"} z-50 dark:text-white text-2xl absolute right-16`}/>         
           <input
             id="search"
             autoFocus
