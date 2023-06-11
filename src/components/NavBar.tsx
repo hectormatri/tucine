@@ -150,6 +150,7 @@ const NavBar = () => {
             id="search"
             autoFocus
             value={query}
+            onBlur={() => setSearch(false)}
             onKeyDown={(e) => searchMovie(e)}
             onChange={(e) => setQuery(e.target.value)}
             className={`absolute h-[45px] w-[calc(100vw-90px)] ${search ? "-translate-x-10" : "translate-x-[calc(100vw+20px)]"} dark:text-white px-5 outline-none border-2 w-[280px] border-[#FFB500] rounded-lg absolutepy-1 bg-[#121212]/30 z-40 transition-all duration-300`}/>  
