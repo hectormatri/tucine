@@ -65,6 +65,7 @@ const NavBar = () => {
     
    
     localStorage.setItem("busquedas", query)
+    document.getElementById("search")?.blur();
     setQuery("")
 
     if(location.pathname === "/found-movies") {
@@ -135,7 +136,7 @@ const NavBar = () => {
           </button>
 
             
-          <i onClick={() => {stateInput(), document.getElementById("search")?.focus()}} className={`iconoir-${search ? "cancel" : "search"} z-50 dark:text-white text-2xl absolute right-16`}/>         
+          <i onClick={() => {stateInput(), document.getElementById("search")?.focus()}} className={`iconoir-${search && query !== "" ? "cancel" : "search"} z-50 dark:text-white text-2xl absolute right-16`}/>         
           <input
             id="search"
             autoFocus
