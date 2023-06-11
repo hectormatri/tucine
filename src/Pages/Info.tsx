@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import Lottie from "lottie-react";
 import axios from "axios";
 
@@ -21,6 +21,7 @@ function Info() {
   const { fetchEndPoint, films } = useFetch();
   const [similar, setSimilar] = useState<Result[]>();
   const params = useParams();
+  const location = useLocation();
 
   interface options {
     method: string;
@@ -77,7 +78,6 @@ function Info() {
     }
   };
 
-  console.log(films?.overview === "")
 
   const getSimilar = async () => {
     const {data} = await axios.get(`https://api.themoviedb.org/3/movie/${params.movieId}/similar?language=es`, options)
@@ -92,15 +92,14 @@ function Info() {
     setReparto(data.cast);
   };
 
-  useEffect(() => {  
-    window.scroll({
-      top: 0,
-      left: 0,
-    });
-    fetchEndPoint(`movie/${params.movieId}?language=es`);
-    getReparto();
-    getSimilar();
-  }, []);
+  useEffect(() => {
+    if (location.pathname.split("/", 3)[1] === "movieId") {
+      window.scroll({top: 0, left: 0, behavior: "smooth"});
+      fetchEndPoint(`movie/${params.movieId}?language=es`);
+      getReparto();
+      getSimilar();
+    }
+  },[params.movieId])
 
 
   useEffect(() => {

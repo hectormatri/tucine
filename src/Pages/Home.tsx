@@ -43,12 +43,15 @@ function Home() {
 
 
   useEffect(() => {
-    
-    
+    window.scrollTo(0, 0)
     checkImg();
-    
   },[])
 
+
+  if (history.scrollRestoration) {
+    history.scrollRestoration = "manual";
+  }
+  
   
   return (
     <div  className={`flex flex-col items-center dark:bg-black bg-white overflow-hidden`}>

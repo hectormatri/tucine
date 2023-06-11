@@ -14,7 +14,10 @@ function ListWrapFilms({similar, titleWrap}: Props) {
       <p className={`dark:text-white text-2xl ${titleWrap === "" ? "my-0" : "my-4"}`}>{titleWrap}</p>
       <div  className="flex flex-wrap justify-between">
           {
-            similar?.filter((f) => (f.poster_path !== null) && (f.backdrop_path !== null) && (f.overview !== "")).map((s, index) => {
+            similar?.filter((f) => 
+              (f.poster_path !== null && f.poster_path !== "") && 
+              (f.backdrop_path !== null && f.backdrop_path !== "") && 
+              (f.overview !== "" && f.overview !== null)).map((s, index) => {
               return (
                 <CardFilmWrap 
                   key={index}
