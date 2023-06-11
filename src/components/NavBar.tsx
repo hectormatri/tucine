@@ -121,22 +121,16 @@ const NavBar = () => {
           <i className="iconoir-search absolute right-3 text-lg dark:text-white" />
         </div>
         <div className="flex flex-row items-center gap-2 mx-4 w-full justify-end md:justify-start">
-          <div className="flex-row gap-1 hover:bg-slate-50/10 px-2 py-1 rounded-md hidden md:inline-flex">
-            <i className="iconoir-translate text-2xl dark:text-white" />
-            <p className="font-bold dark:text-white">ES</p>
-          </div>
           <i
             onClick={handleToogleTheme}
             className={`iconoir-${
               theme === "dark" ? "sun-light" : "half-moon"
             } text-2xl p-2 hover:bg-slate-50/10 rounded-full dark:text-white hidden md:inline-flex`}
           />
-          <button className="bg-[#FFB500] px-3 py-1 rounded-lg font-bold w-32 hidden md:inline-flex">
-            Iniciar sesion
-          </button>
+          
 
             
-          <i onClick={() => {stateInput(), document.getElementById("search")?.focus()}} className={`iconoir-${search && query !== "" ? "cancel" : "search"} z-50 dark:text-white text-2xl absolute right-16`}/>         
+          <i onClick={() => {stateInput(), document.getElementById("search")?.focus()}} className={`iconoir-${search && query !== "" ? "cancel" : "search"} z-50 dark:text-white text-2xl absolute right-16 md:hidden`}/>         
           <input
             id="search"
             autoFocus
@@ -144,7 +138,7 @@ const NavBar = () => {
             onBlur={() => setSearch(false)}
             onKeyDown={(e) => searchMovie(e)}
             onChange={(e) => setQuery(e.target.value)}
-            className={`absolute h-[45px] w-[calc(100vw-90px)] ${search ? "-translate-x-10" : "translate-x-[calc(100vw+20px)]"} dark:text-white px-5 outline-none border-2 w-[280px] border-[#FFB500] rounded-lg absolutepy-1 bg-[#121212]/30 z-40 transition-all duration-300`}/>  
+            className={`absolute h-[45px] w-[calc(100vw-90px)] ${search ? "-translate-x-10" : "translate-x-[calc(100vw+20px)]"} dark:text-white px-5 outline-none border-2 w-[280px] border-[#FFB500] rounded-lg absolutepy-1 bg-transparent dark:bg-[#121212]/30 z-40 transition-all duration-300 md:hidden`}/>  
           
             
 

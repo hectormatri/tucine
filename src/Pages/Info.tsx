@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useParams, useLocation } from "react-router-dom";
-import Lottie from "lottie-react";
 import axios from "axios";
 
 import useFetch from "../../hooks/useFetch";
@@ -8,7 +7,6 @@ import useFetch from "../../hooks/useFetch";
 //Componentes
 import CardActor from "../components/CardActor";
 import ListWrapFilms from "../components/Home/ListWrapFilms";
-import trailerNotFound from "../../public/lottie/trailerNotFound.json"
 
 //Interfaces
 import { Cast } from "../../interfaceFilms";
@@ -18,6 +16,7 @@ function Info() {
   const [watchVideo, setWatchVideo] = useState<boolean>(false);
   const [trailer, setTrailer] = useState<string>("");
   const [reparto, setReparto] = useState<Cast[]>();
+  const [loadTrailer, setLoadTrailer] = useState<boolean>(false);
   const { fetchEndPoint, films } = useFetch();
   const [similar, setSimilar] = useState<Result[]>();
   const params = useParams();
@@ -105,10 +104,12 @@ function Info() {
   useEffect(() => {
     if (watchVideo) {
       document.getElementById("sidebar")?.classList.add("sidebaractive");
+      setTimeout(() => setLoadTrailer(true), 500)
     } else {
       document
         .getElementById("sidebar")
-        ?.classList.remove("sidebaractive");
+        ?.classList.remove("sidebaractive")
+      setTimeout(() => setLoadTrailer(false), 500)
     }
   }, [watchVideo]);
 
@@ -186,16 +187,14 @@ function Info() {
               id="stopvideo"
               className={`absolute w-[calc(100vw-40px)] right-5 -top-[200px] overflow-hidden rounded-3xl z-40`}
             >
-              { trailer !== "" ? 
+              {trailer !== "" && loadTrailer ? 
                 <iframe
                   allowFullScreen
                   referrerPolicy="unsafe-url"
                   className="w-full h-[300px]"
                   src={trailer}
                 /> : 
-                  <div className="h-[300px] grid place-content-center bg-zinc-900/90">
-                    <Lottie loop animationData={trailerNotFound}/>
-                  </div>
+                  ""
                
                 
               }
@@ -207,9 +206,9 @@ function Info() {
         </div>
       </div>
 
-      <div className="dark:bg-[#121212] bg-white flex flex-col z-30 w-screen">
-        <p className="dark:text-white text-2xl my-5 px-5">Reparto</p>
-        <div className="flex flex-row justify-between pe-5 w-screen overflow-x-scroll pb-5">
+      <div className="dark:bg-[#121212] bg-white flex flex-col z-30 w-screen items-center">
+        <p className="dark:text-white text-2xl my-5 px-5 text-start w-screen">Reparto</p>
+        <div className="flex flex-row justify-between  w-[calc(100vw-40px)] overflow-x-scroll pb-5">
           {reparto
             ?.filter(
               (r) =>
@@ -222,7 +221,7 @@ function Info() {
         </div>
       </div>
       <div  className="dark:bg-[#121212] bg-white flex flex-col z-30 w-screen pb-6">
-        <ListWrapFilms titleWrap="Similares" similar={similar}/>
+        <ListWrapFilms titleWrap="Similares" films={similar}/>
       </div>
     </div>
   );

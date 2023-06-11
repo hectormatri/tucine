@@ -18,7 +18,7 @@ function CardFilmWrap({ title, path, date, valoration, id }: Film) {
             <p className="text-center font-bold text-sm ">{valoration?.toFixed(1)}</p>
           </div>
           <div>
-            <img src={path} className="rounded-t-xl" />
+            <img loading="lazy" src={path} className="rounded-t-xl" />
             <p className="dark:text-white dark:font-normal text-center text-sm md:text-base my-1 px-1">{title}</p>
           </div>
           <div className="">

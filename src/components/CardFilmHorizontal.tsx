@@ -20,7 +20,7 @@ function CardFilmHorizontal({ title, path, date, valoration, id }: Film) {
         <p className="text-center font-bold text-sm ">{valoration.toFixed(1)}</p>
       </div>
       <div>
-        <img src={path} className="h-[350px] rounded-t-xl" />
+        <img loading="lazy" src={path} className="h-[350px] rounded-t-xl" />
         <p className="mt-3 text-center font-bold dark:text-white dark:font-normal px-1">{title}</p>
       </div>
       <div className="w-[233.33px] px-[50px] mb-3">

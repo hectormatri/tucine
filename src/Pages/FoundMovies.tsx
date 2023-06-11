@@ -50,7 +50,7 @@ function FoundMovies() {
         <div className="h-[400px] relative">
           <img src={`https://image.tmdb.org/t/p/w780${movieFound[0]?.backdrop_path}`} className="object-cover dark:brightness-[60%] fixed h-[400px] z-0"/>
         </div>
-        <ListWrapFilms titleWrap="" similar={movieFound}/>
+        <ListWrapFilms titleWrap="" films={movieFound}/>
     </div>
   )
 }

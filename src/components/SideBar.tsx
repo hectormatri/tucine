@@ -58,15 +58,6 @@ function SideBar({
             </p>
           </button>
         </div>
-        <div className="flex flex-col md:hidden">
-          <div className="flex flex-row gap-1 hover:bg-slate-50/10 px-2 py-1 rounded-md">
-            <i className="iconoir-translate text-2xl dark:text-white" />
-            <p className="font-bold dark:text-white">ES</p>
-          </div>
-          <button className="bg-[#FFB500] px-3 py-1 rounded-lg font-bold w-32">
-            Iniciar sesion
-          </button>
-        </div>
       </div>
     </div>
   );

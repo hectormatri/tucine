@@ -2,11 +2,11 @@ import { Result } from "../../../interfaceFilms"
 import CardFilmWrap from "../CardFilmWrap"
 
 interface Props {
-  similar: Result[] | undefined
+  films: Result[] | undefined
   titleWrap: string
 }
 
-function ListWrapFilms({similar, titleWrap}: Props) {
+function ListWrapFilms({films, titleWrap}: Props) {
   
   return (
 
@@ -14,7 +14,7 @@ function ListWrapFilms({similar, titleWrap}: Props) {
       <p className={`dark:text-white text-2xl ${titleWrap === "" ? "my-0" : "my-4"}`}>{titleWrap}</p>
       <div  className="flex flex-wrap justify-between">
           {
-            similar?.filter((f) => 
+            films?.filter((f) => 
               (f.poster_path !== null && f.poster_path !== "") && 
               (f.backdrop_path !== null && f.backdrop_path !== "") && 
               (f.overview !== "" && f.overview !== null)).map((s, index) => {
