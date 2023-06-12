@@ -6,7 +6,6 @@ import {store} from "../utils/store"
 
 //Pages
 import App from "./App.tsx";
-import Explore from "./Pages/Explore.tsx";
 import Home from "./Pages/Home.tsx";
 import Info from "./Pages/Info.tsx";
 import FoundMovies from "./Pages/FoundMovies.tsx";
@@ -18,7 +17,6 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
       <Routes>
         <Route path="/" element={<App />}>
           <Route path="/" element={<Home />}/>
-          <Route path="/explore-films" element={<Explore />} />
           <Route path="/found-movies" element={<FoundMovies />} />
           <Route path="/movie-notFound" element={<MovieNotFound/>}/>
           <Route path="/movieId/:movieId" element={<Info/>}/>

@@ -36,14 +36,6 @@ function SideBar({
             <i className="iconoir-home text-lg dark:text-white" />
             <p className="text-lg dark:text-white">Home</p>
           </Link>
-          <Link
-            to="/explore-films"
-            onClick={() => handleVisible(!isVisible)}
-            className="flex flex-row items-center gap-3 bg-white dark:bg-[#1e1d1d] dark:border-[#252424] border shadow-md rounded-md px-4 py-1 hover:scale-105 transition-transform duration-300"
-          >
-            <i className="iconoir-safari text-lg dark:text-white" />
-            <p className="text-lg dark:text-white">Explore</p>
-          </Link>
           <button
             onClick={() => handleChangeTheme()}
             className="flex flex-row items-center gap-3 bg-white dark:bg-[#1e1d1d] dark:border-[#252424] border shadow-md rounded-md px-4 py-1 hover:scale-105 transition-transform duration-300"

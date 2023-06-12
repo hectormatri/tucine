@@ -13,7 +13,7 @@ function CardFilmWrap({ title, path, date, valoration, id }: Film) {
     
 
     return (
-        <Link  to={`/movieId/${id}`} className="dark:bg-zinc-900 bg-zinc-50 justify-between w-[calc((100vw/2)-30px)] md:w-[calc((100vw/4)-30px)] 2xl:w-[calc((1500px/4)-30px)] mt-4 md:hover:bg-white/5 relative flex flex-col items-center rounded-xl md:hover:scale-105 transition-all duration-300 ">
+        <Link  to={`/movieId/${id}`} className="dark:bg-zinc-900 bg-zinc-50 justify-between w-[calc((100vw/2)-30px)] md:w-[calc((100vw/4)-30px)] 2xl:w-[calc((1500px/4)-30px)] mt-4 lg:hover:bg-white/5 relative flex flex-col items-center rounded-xl lg:hover:scale-105 transition-all duration-300 ">
           <div className="absolute bg-white/60 w-7 h-7 p-1 rounded-full right-3 top-3">
             <p className="text-center font-bold text-sm ">{valoration?.toFixed(1)}</p>
           </div>
