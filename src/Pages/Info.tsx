@@ -112,6 +112,7 @@ function Info() {
       setTimeout(() => setLoadTrailer(false), 500)
     }
   }, [watchVideo]);
+  
 
   return (
     <div className={`flex flex-col items-center`}>
@@ -128,7 +129,7 @@ function Info() {
             alt=""
           />
         </div>
-        <div className="flex flex-col absolute w-screen top-24">
+        <div className="flex flex-col absolute w-screen top-24 lg:w-[1024px] lg:py-24 lg:px-24">
           <p className="text-white text-2xl text-start w-full px-5">
             {films?.title}
           </p>
@@ -138,7 +139,7 @@ function Info() {
             </p>
             <p className="text-white text-sm text-start">{`${films?.release_date}`}</p>
           </div>
-          <div className="flex flex-row mt-2 justify-between px-5">
+          <div className="flex flex-row mt-2 justify-between px-5 md:justify-start md:gap-5">
             <p className="text-white text-sm bg-slate-700/40 px-3 py-1 rounded-md w-fit">
               {films?.vote_count} votos
             </p>
@@ -156,23 +157,32 @@ function Info() {
               Ver trailer
             </button>
           </div>
-          <p className="text-white px-5 my-4">Sinopsis</p>
-          <p  className="text-white px-5 text-sm break-normal text-justify text-ellipsis h-[260px] overflow-y-scroll">
-            {films?.overview}
-          </p>
-          <div
-            className={`flex flex-wrap gap-x-4 mb-2 my-9 bg-slate-700/40 mx-5 w-fit px-5 py-1.5 rounded-lg`}
-          >
-            {films?.genres.map((g, index) => {
-              return (
-                <p className="text-white text-sm" key={index}>
-                  {g.name}
-                </p>
-              );
-            })}
+          <div className="flex md:flex-row flex-col">
+            <div className="flex flex-col">
+              <p className="text-white ps-5 my-4">Sinopsis</p>
+              <p  className="text-white px-5 text-sm break-normal text-justify text-ellipsis h-[260px] lg:overflow-y-hidden overflow-y-scroll">
+                {films?.overview}
+              </p>
+            </div>
+          
+            <div
+                  className={`flex flex-col md:pe-5 px-5`}
+                >
+                  <p className="text-white my-4 text-start">Categorías</p>
+                  <div className="flex flex-wrap md:w-[200px] gap-3 bg-slate-700/40 rounded-lg p-2">
+                    {films?.genres.map((g, index) => {
+                      return (
+                        <p className="text-white text-sm" key={index}>
+                          {g.name}
+                        </p>
+                      );
+                    })}
+                  </div>
+              </div>
+            
           </div>
-
-          <div
+        </div>
+        <div
             className={`fixed w-full h-[350px] flex flex-row z-40 top-[55%] transition-all duration-300 ${
               watchVideo ? "right-0" : "-right-full"
             }`}
@@ -185,13 +195,13 @@ function Info() {
             />
             <div
               id="stopvideo"
-              className={`absolute w-[calc(100vw-40px)] right-5 -top-[200px] overflow-hidden rounded-3xl z-40`}
+              className={`absolute w-[calc(100vw-40px)] md:w-[calc(50%)] md:right-[calc(50vw-400px)] right-5 -top-[200px] overflow-hidden rounded-3xl z-40`}
             >
               {trailer !== "" && loadTrailer ? 
                 <iframe
                   allowFullScreen
                   referrerPolicy="unsafe-url"
-                  className="w-full h-[300px]"
+                  className="w-full h-[300px] lg:h-[400px]"
                   src={trailer}
                 /> : 
                   ""
@@ -199,16 +209,13 @@ function Info() {
                 
               }
             </div>
-          </div>
-
-
-
         </div>
       </div>
 
-      <div className="dark:bg-[#121212] bg-white flex flex-col z-30 w-screen items-center">
-        <p className="dark:text-white text-2xl my-5 px-5 text-start w-screen">Reparto</p>
-        <div className="flex flex-row justify-between  w-[calc(100vw-40px)] overflow-x-scroll pb-5">
+      <div className="dark:bg-[#121212] bg-white flex flex-col z-30 w-screen items-center ">
+        <p className="dark:text-white text-2xl my-5 px-5 text-start w-screen 2xl:w-[1500px] 2xl:px-0">Reparto</p>
+        <div className="scrollReparto flex flex-row w-[calc(100vw-40px)] overflow-x-scroll pb-5 2xl:w-[1500px]">
+          
           {reparto
             ?.filter(
               (r) =>

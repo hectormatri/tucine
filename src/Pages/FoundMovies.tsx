@@ -46,9 +46,9 @@ function FoundMovies() {
  
 
   return (
-    <div className=" dark:bg-[#121212] bg-white">
-        <div className="h-[400px] relative">
-          <img src={`https://image.tmdb.org/t/p/w780${movieFound[0]?.backdrop_path}`} className="object-cover dark:brightness-[60%] fixed h-[400px] z-0"/>
+    <div className=" dark:bg-[#121212] bg-white w-screen">
+        <div className="lg:h-[calc(100vh-350px)] h-[calc(100vh/2)] relative object-top w-screen">
+          <img src={`https://image.tmdb.org/t/p/original${movieFound[0]?.backdrop_path}`} className="object-cover h-[calc(100vh/2)] w-screen dark:brightness-[60%] fixed z-0"/>
         </div>
         <ListWrapFilms titleWrap="" films={movieFound}/>
     </div>

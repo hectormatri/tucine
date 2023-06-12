@@ -80,7 +80,7 @@ function Home() {
           className="w-full h-screen object-cover object-top fixed z-0 dark:brightness-[0.5] brightness-[1.1] left-0"
         />
       </div>
-      <div className="flex flex-col">
+      <div className="flex flex-col w-screen">
         <ListHorizontalFilms films={filmsDiscover} titleList={"Lo más popular"}/>
         <ListHorizontalFilms films={mejorValoradas} titleList={"Con mejor valoración"}/>
         <ListWrapFilms films={upcoming} titleWrap="Están por llegar"/>

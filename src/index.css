@@ -69,5 +69,7 @@ img {
   .scrollingX::-webkit-scrollbar {
     width: 8px;
   }
-  #overflowVisible {}
+ .scrollReparto::-webkit-scrollbar {
+  height: 2px;
+ }
 }

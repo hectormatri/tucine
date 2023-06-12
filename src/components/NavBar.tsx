@@ -63,20 +63,25 @@ const NavBar = () => {
     if (e.key === "Enter") {
     
     const {data} = await axios.get(`https://api.themoviedb.org/3/search/movie?query=${query}&include_adult=false&language=es&page=1`, options)  
-    if (data.results[0] === undefined) {
+    
+    
+    if (data.results[0] !== undefined) {
       dispatch(handleMovieFound(data.results))
     }
     
    
     localStorage.setItem("busquedas", query)
     document.getElementById("search")?.blur();
+    document.getElementById("searchPC")?.blur();
     setQuery("")
 
-    if(location.pathname === "/found-movies") {
+    if(location.pathname === "/found-movies" && data.results[0] !== undefined) {
       window.location.reload();
-    } else {
+    } else if (data.results[0] !== undefined) {
       navigation("found-movies")
-    }
+    } else (
+      navigation("movie-notFound")
+    )
     
     setSearch(false)
     
@@ -119,7 +124,11 @@ const NavBar = () => {
         </Link>
         <div className="flex-row items-center relative w-full hidden md:inline-flex">
           <input
+            id="searchPC"
             placeholder="Busca tu pelicula"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            onKeyDown={(e) => {searchMovie(e)}}
             className="placeholder:text-black placeholder:dark:text-slate-200 dark:text-slate-200 w-full border-2 rounded-xl border-[#FFB500] py-1.5 outline-none px-3 bg-transparent"
           />
           <i className="iconoir-search absolute right-3 text-lg dark:text-white" />

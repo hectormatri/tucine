@@ -25,7 +25,9 @@ function CardFilmHorizontal({ title, path, date, valoration, id }: Film) {
       </div>
       <div className="w-[233.33px] px-[50px] mb-3">
         
-        <p className="text-center text-[#FFB500] font-bold dark:font-normal">{`${date}`}</p>
+        <p className="text-center text-[#FFB500] font-bold dark:font-normal">
+          {`${date.toString().split('-', 3)[2]}-${date.toString().split('-', 3)[1]}-${date.toString().split('-', 3)[0]}`}
+        </p>
       </div>
     </Link>
   );
