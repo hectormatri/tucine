@@ -1,6 +1,8 @@
 import { Outlet } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import { useEffect } from "react"
+import LogRocket from 'logrocket';
+LogRocket.init('zyqjsd/tucine');
 
 import useFetch from "../hooks/useFetch";
 

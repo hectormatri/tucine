@@ -11,7 +11,7 @@ function MovieNotFound() {
 
   return (
     <div className='h-screen'>
-      <p className='absolute text-white z-10 top-1/4 text-xl px-5 bg-zinc-900/70 rounded-lg py-2 mx-5'>Lo sentimos, no se ha encontrado ningún resultado para su búsqueda.</p>
+      <p className='absolute z-10 top-1/4 px-5 bg-zinc-900/70 rounded-lg py-2 mx-5 text-3xl leading-10 text-[#FFB500]'>Lo sentimos, no se ha encontrado ningún resultado para su búsqueda.</p>
       <img src={`https://image.tmdb.org/t/p/original${img[numberRandom(0, img.length)]?.backdrop_path}`}
       className='object-cover h-screen brightness-[20%]'
       />

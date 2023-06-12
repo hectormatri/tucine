@@ -10,7 +10,7 @@ function ListWrapFilms({films, titleWrap}: Props) {
   
   return (
 
-    <div className="flex flex-col px-5 dark:bg-[#121212] bg-white relative pb-7 items-center">
+    <div className="flex flex-col px-5 dark:bg-[#121212] bg-white relative pb-7 items-center w-screen">
       <div className="w-[calc(100vw-40px)] 2xl:w-[1500px]">
         <p className={`dark:text-white text-3xl ${titleWrap === "" ? "my-0" : "my-4"}`}>{titleWrap}</p>
         <div  className="flex flex-wrap justify-between">
