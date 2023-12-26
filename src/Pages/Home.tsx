@@ -83,7 +83,10 @@ function Home() {
       <div className="flex flex-col w-screen">
         <ListHorizontalFilms films={filmsDiscover} titleList={"Lo más popular"}/>
         <ListHorizontalFilms films={mejorValoradas} titleList={"Con mejor valoración"}/>
-        <ListWrapFilms films={upcoming} titleWrap="Están por llegar"/>
+        {
+          upcoming && upcoming?.length > 0 ? 
+          <ListWrapFilms films={upcoming} titleWrap="Están por llegar"/> : ''
+        }
       </div>
     </div>
   );

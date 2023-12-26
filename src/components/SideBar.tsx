@@ -23,7 +23,7 @@ function SideBar({
         onClick={() => handleVisible(!isVisible)}
         className="h-full md:w-full w-screen bg-slate-200/70 dark:brightness-0"
       />
-      <div className="bg-white md:w-[300px] w-[800px] h-full justify-between right-0 flex flex-col p-8 dark:bg-[#111111]">
+      <div className="bg-white md:w-[350px] w-[800px] h-full justify-between right-0 flex flex-col p-8 dark:bg-[#111111]">
         <div className="gap-5 flex flex-col">
           <h1 className="font-bold text-center text-2xl dark:text-white">
             MENÚ
@@ -33,8 +33,8 @@ function SideBar({
             onClick={() => handleVisible(!isVisible)}
             className="flex flex-row items-center gap-3 bg-white dark:bg-[#1e1d1d] dark:border-[#252424] border shadow-md rounded-md px-4 py-1 hover:scale-105 transition-transform duration-300"
           >
-            <i className="iconoir-home text-lg dark:text-white" />
-            <p className="text-lg dark:text-white">Home</p>
+            <i className="iconoir-home md:text-lg dark:text-white" />
+            <p className="md:text-lg dark:text-white">Home</p>
           </Link>
           <button
             onClick={() => handleChangeTheme()}
@@ -43,10 +43,10 @@ function SideBar({
             <i
               className={`iconoir-${
                 theme === "light" ? "half-moon" : "sun-light"
-              } text-lg dark:text-white`}
+              } md:text-lg dark:text-white`}
             />
-            <p className="text-lg dark:text-white">
-              Cambiar a {theme === "light" ? "ocuro" : "claro"}
+            <p className="md:text-lg dark:text-white">
+              Cambiar a {theme === "light" ? "oscuro" : "claro"}
             </p>
           </button>
         </div>
