@@ -15,10 +15,7 @@ function ListWrapFilms({films, titleWrap}: Props) {
         <p className={`dark:text-white text-3xl ${titleWrap === "" ? "my-0" : "my-4"}`}>{titleWrap}</p>
         <div  className="flex flex-wrap justify-between">
             {
-              films?.filter((f) => 
-                (f.poster_path !== null && f.poster_path !== "") && 
-                (f.backdrop_path !== null && f.backdrop_path !== "") && 
-                (f.overview !== "" && f.overview !== null)).map((s, index) => {
+              films?.map((s, index) => {
                 return (
                   <CardFilmWrap 
                     key={index}

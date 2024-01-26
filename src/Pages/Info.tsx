@@ -41,12 +41,23 @@ function Info() {
     }
   },[params.movieId])
 
+  const evaluateFilmsComing = () => {
+    const films = similar?.filter((f) => 
+    (f.poster_path !== null && f.poster_path !== "") && 
+    (f.backdrop_path !== null && f.backdrop_path !== "") && 
+    (f.overview !== "" && f.overview !== null))
+
+    return films && films.length > 0 ? films : undefined
+  }
+
   return (
     <div className={`flex flex-col items-center md:items-start`}>
    
       <InfoMovie/>
-      <ListActors/>        
-      <ListWrapFilms titleWrap="Similares" films={similar}/>
+      <ListActors/>
+      {evaluateFilmsComing() &&
+        <ListWrapFilms titleWrap="Similares" films={evaluateFilmsComing()}/>
+      }        
       
     </div>
   );

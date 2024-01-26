@@ -69,6 +69,15 @@ function Home() {
   if (history.scrollRestoration) {
     history.scrollRestoration = "manual";
   }
+
+  const evaluateFilmsComing = () => {
+    const films = upcoming?.filter((f) => 
+    (f.poster_path !== null && f.poster_path !== "") && 
+    (f.backdrop_path !== null && f.backdrop_path !== "") && 
+    (f.overview !== "" && f.overview !== null))
+
+    return films && films.length > 0 ? films : undefined
+  }
   
   
   return (
@@ -84,8 +93,8 @@ function Home() {
         <ListHorizontalFilms films={filmsDiscover} titleList={"Lo más popular"}/>
         <ListHorizontalFilms films={mejorValoradas} titleList={"Con mejor valoración"}/>
         {
-          upcoming && upcoming?.length > 0 ? 
-          <ListWrapFilms films={upcoming} titleWrap="Están por llegar"/> : ''
+          evaluateFilmsComing() && 
+          <ListWrapFilms films={evaluateFilmsComing()} titleWrap="Están por llegar"/>
         }
       </div>
     </div>
